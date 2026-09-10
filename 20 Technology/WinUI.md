@@ -31,6 +31,34 @@ WinUI 3 是当前现代 Windows 桌面 UI 的主要原生路线之一，适合 W
 
 XAML → Grid/Layout → Controls → Resources/Styles → Binding/x:Bind → MVVM → Navigation → Windowing → Composition。
 
+## Agent-native WinUI 开发
+
+截至 2026-09-10，Microsoft 已维护 `microsoft/win-dev-skills`，把 WinUI 3 / Windows App SDK 的开发流程包装为可被 GitHub Copilot、Claude Code 与 OpenAI Codex 使用的 Agent Plugin/Skills。当前仍属于 Preview，应作为**高价值参考基线**，而不是未经验证的项目真源。
+
+值得吸收的工程方式：
+
+1. 把 WinUI 专用开发规则做成可版本化 Skill，而不是只依赖通用 System Prompt。
+2. 将 scaffold、design、build、review、UI testing、packaging、migration 拆成独立工作流。
+3. 使用 WinApp CLI 让 Agent 能在不依赖 IDE GUI 操作的情况下执行可重复的 Windows 应用工程流程。
+4. 使用 Roslyn Analyzer / Metadata 工具把一部分“提示词规则”下沉为机器可验证的门禁。
+5. Visual Studio 仍适合 XAML Hot Reload、Live Visual Tree、深层诊断；CLI/Agent 工作流与 VS 不冲突。
+
+### Axis 建议基线
+
+```text
+Codex / Agent
+     ↓
+WinUI Skills + Axis Project Rules
+     ↓
+WinApp CLI / dotnet / Analyzer
+     ↓
+Build / Test / UIA / Package
+     ↓
+真实验收 Gate
+```
+
+这比“让 Agent 自由生成 XAML，然后人工看起来差不多”更适合正式项目。
+
 ## AxisAgent UI 关注点
 
 - Streaming Event Pipeline 与 UI batching。
@@ -40,4 +68,4 @@ XAML → Grid/Layout → Controls → Resources/Styles → Binding/x:Bind → MV
 - Theme / Fluent / Composition。
 - UI 与 Agent Runtime 严格解耦。
 
-关联：[[Desktop UI]] · [[AxisAgent]] · [[WPF]] · [[WinForms]] · [[Avalonia]]
+关联：[[Desktop UI]] · [[AxisAgent]] · [[WPF]] · [[WinForms]] · [[Avalonia]] · [[Agent Capability Packaging]]
