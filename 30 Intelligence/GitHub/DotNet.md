@@ -41,4 +41,15 @@ GitHub Trending 的 AI 热度主要集中在 Python 和 TypeScript，但 C#/.NET
 
 参见：[[GitHub Trending — 2026-09-10]] · [[WinUI]] · [[Agent]]
 
+## 2026-09-11 变化
+
+- `files-community/Files` 位于 C# Daily Trending，约 **+208 stars/day**。它的仓库标签包含 .NET、Fluent、WinAppSDK、WinUI、XAML，说明成熟 Windows 原生 GUI 应用仍有很强关注度。
+- `luolangaga/tubatools` 位于 C# Weekly Trending，约 **+686 stars/week**；其 README 明确为 **WinUI 3 + .NET 10** 的复杂 Windows 工具工作台，并包含 AI 助手、硬件监控和 Fluent 工具体系。它比单页 Sample 更适合作为真实 WinUI 工程参考。
+- `CoplayDev/unity-mcp` 本周约 **+239 stars**，继续确认 C# AI 的强项是把 Unity、工业/工程软件等现有专业能力安全地暴露给 Agent。
+- `microsoft/mcp` 仍在 C# Daily Trending，继续提供官方 Microsoft MCP Server Catalog 的生态信号。
+
+结论没有改变：Axis 的差异化重点应放在 **Windows / Industrial / Professional Software + MCP/Computer Use + Local AI**，而不是追逐通用 Agent Framework 数量。
+
+参见：[[GitHub Trending — 2026-09-11]] · [[WinUI]] · [[Agent]]
+
 关联：[[WinUI]] · [[Avalonia]] · [[Agent]] · [[Local-AI]]
