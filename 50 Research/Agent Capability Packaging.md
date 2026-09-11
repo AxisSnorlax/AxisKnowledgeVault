@@ -2,6 +2,7 @@
 type: research
 status: working-thesis
 date: 2026-09-10
+updated: 2026-09-11
 topic: agent-capability-packaging
 tags:
   - agent
@@ -18,7 +19,7 @@ tags:
 
 Agent 生态中的 `Skill`、`Plugin`、`Harness`、`Team Harness` 应如何区分？它们在 [[AxisAgent]] 中应对应什么边界？
 
-> 当前结论是基于 2026-09-09 ～ 2026-09-10 的开源项目观察形成的**工作假设**，不是行业正式标准。
+> 当前结论是基于 2026-09-09 ～ 2026-09-11 的开源项目连续观察形成的**工作假设**，不是行业正式标准。
 
 ## 观察证据
 
@@ -48,7 +49,20 @@ Agent 生态中的 `Skill`、`Plugin`、`Harness`、`Team Harness` 应如何区�
 - Promote
 - Maintenance / Prune
 
-这比“共享 Prompt 仓库”更接近正式的软件资产治理。
+这比“共享 Prompt 仓库”更接近正式的软件资产治理。2026-09-11 其 Daily Trending 增速继续上升，增强了这一信号的持续性。
+
+### vercel-labs/skills
+
+2026-09-11 新增的重要证据。该工具已经把 Agent Skill 做成跨客户端的包管理生命周期：
+
+- 支持 OpenCode、Claude Code、Codex、Cursor 等 75+ Agent；
+- Source 可来自 GitHub、GitLab、任意 Git URL、本地路径和私有仓库；
+- 支持 Project / Global Scope；
+- 支持 `add / use / list / find / update / remove / init`；
+- 可使用 canonical copy + symlink 让多个 Agent 共享单一 Skill 真源；
+- 能读取部分 Plugin Manifest 中声明的 Skills。
+
+这意味着 Skill Registry 不应只解决“如何找到 SKILL.md”，还应处理 Source、Version、Scope、Update、Removal、Compatibility、Integrity 与团队共享。
 
 ### affaan-m/ECC
 
@@ -70,7 +84,7 @@ Agent 生态中的 `Skill`、`Plugin`、`Harness`、`Team Harness` 应如何区�
 - Session Recovery
 - Plugin Sandboxing / Publisher Verification
 
-因此插件系统不能只停留在“加载 DLL”。
+2026-09-11 Daily Trending 增速较前一日继续上升，因此“Agent Desktop 是正式产品类别”的信号增强。
 
 ## 建议分层
 
@@ -104,6 +118,8 @@ Skill
    └── Focused Workflow / Behavior Policy
 ```
 
+**Skill Distribution / Package Management 是横切层，不应被误建模为另一种 Skill。** 它负责 Source、Install、Scope、Version、Update、Integrity 和兼容性，并同时服务 Project、User 和 Team Harness。
+
 ## AxisAgent 建议模型
 
 ### Skill Manifest
@@ -115,11 +131,34 @@ Skill
 - `name`
 - `description`
 - `entry/workflow`
+- `source`
+- `scope`
 - `requiredCapabilities`
 - `recommendedTools`
 - `compatibility`
+- `integrity`（远程分发时）
 
 Skill 默认不直接表达任意本机代码执行权限。
+
+### Skill 生命周期
+
+```text
+Discover Source
+  ↓
+Inspect Metadata
+  ↓
+Resolve Compatibility
+  ↓
+Verify Integrity / Trust
+  ↓
+Install to Project or User Scope
+  ↓
+Enable under Harness Governance
+  ↓
+Check / Update
+  ↓
+Disable / Remove
+```
 
 ### Plugin Manifest
 
@@ -168,6 +207,7 @@ Upgrade / Disable / Remove
 3. MCP Server 连接同样需要来源、能力发现、命名冲突、超时和断线恢复治理。
 4. Plugin UI 扩展不应默认与 Runtime 共享完整进程权限。
 5. Publisher Verification、Sandbox、Version Compatibility、Session Recovery 应成为正式产品门禁，而不是后补功能。
+6. 来自 Git/URL/私有仓库的 Skill 也属于供应链输入，应保留 Source、版本/提交、完整性与更新记录。
 
 ## 与 Axis Knowledge Vault 的关系
 
@@ -179,14 +219,17 @@ Capture → Review → Promote → Recall → Prune / Archive
 
 可将 Daily Intelligence 视为 Capture；`20 Technology/` 与 `40 Engineering/` 是 Promote 后的长期知识；项目仓库和正式报告仍是事实第一真源。
 
+Memory 与 Knowledge 的更细分边界见 [[Agent Memory and Knowledge Lifecycle]]。
+
 ## 当前建议
 
 对 [[AxisAgent]]：
 
 - 明确 `Skill / Plugin / Harness` 三层模型。
+- 给 Skill 增加正式的 Source / Scope / Version / Update 生命周期，而不是只扫描目录。
 - Plugin 不与 .NET Assembly 画等号，优先 Manifest-driven。
 - 支持声明式 Skill/MCP/Agent/Hook/Asset 组合。
 - Runtime 统一执行权限、隔离、生命周期和恢复。
 - 等插件机制真正进入产品实现时，再根据真实需求决定是否允许托管 .NET Plugin Assembly。
 
-关联：[[Agent]] · [[Skills]] · [[MCP]] · [[Context Engineering]] · [[Memory]] · [[WinUI]]
+关联：[[Agent]] · [[Skills]] · [[MCP]] · [[Context Engineering]] · [[Memory]] · [[WinUI]] · [[GitHub Trending — 2026-09-11]]
