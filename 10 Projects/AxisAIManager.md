@@ -15,6 +15,8 @@ tags:
 
 Axis.LocalAIManager 是本地 AI 基础设施控制面，基于 .NET 10、Windows Forms 与 AntdUI，管理 llama.cpp 推理/嵌入、ComfyUI、Docker Desktop、Qdrant 与模型配置。
 
+> 项目仓库与正式文档仍是实现事实第一真源；本页只做聚合与研究候选记录。
+
 ## 与 AxisAgent 的边界
 
 - Manager：模型配置、模型切换、进程所有权、健康检查、推理/嵌入/Qdrant 生命周期。
@@ -33,8 +35,39 @@ Axis.LocalAIManager 是本地 AI 基础设施控制面，基于 .NET 10、Window
 - Docker Engine 健康检查。
 - 原子配置、运行缓存和脱敏日志。
 
+## 研究候选（未实现事实）
+
+### Hardware Fit / Measured Performance
+
+2026-09-11 的 [[Local-AI]] 趋势中，`AlexsJones/llmfit` 提供了值得验证的模式：
+
+```text
+Hardware Profile
+  ↓
+Model / Quantization / Context Fit
+  ↓
+Estimated TPS / Memory
+  ↓
+Real Benchmark
+  ↓
+Measured Result overrides Estimate
+```
+
+如果未来进入实现，建议 AxisAIManager 只承担**本地硬件与 Runtime 能力诊断**，不扩张为 Agent Provider Gateway。候选字段包括：
+
+- CPU / RAM / GPU / VRAM / backend；
+- Model / Quantization / Context；
+- Estimated memory / TPS；
+- Measured TPS / TTFT；
+- 数据来源与测量时间；
+- Estimate / Measurement 明确状态。
+
+### Memory Tier Diagnostics
+
+`JustVugg/colibri` 的 VRAM / RAM / NVMe 分层权重与硬件规划属于实验性研究。当前只值得吸收其 **Memory Tier、Storage Bandwidth、Residency、KV/Prefix Reuse 的诊断思路**，不构成替换 llama.cpp 的理由。任何 Runtime Adapter 都必须在真实 Windows 目标硬件上通过可重复 benchmark 后再进入产品范围。
+
 ## 长期定位
 
 它应该保持“Local AI Control Plane”而不是扩张成 Agent 平台。
 
-关联：[[AxisAgent]] · [[Local-AI]] · [[WinForms]] · [[DotNet]]
+关联：[[AxisAgent]] · [[Local-AI]] · [[WinForms]] · [[DotNet]] · [[GitHub Trending — 2026-09-11]]
