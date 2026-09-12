@@ -2,6 +2,7 @@
 type: research
 status: working-thesis
 date: 2026-09-11
+updated: 2026-09-12
 topic: agent-memory-knowledge-lifecycle
 tags:
   - agent
@@ -18,7 +19,7 @@ tags:
 
 Agent 的 `Context`、`Memory`、`Handoff`、`Knowledge Base` 应如何分层，避免最后全部退化成“往向量库里存东西”？
 
-> 本文基于 2026-09-09 ～ 2026-09-11 连续观察到的 `context-mode`、`Tencent/teamai-cli`、`akitaonrails/ai-memory`、`nashsu/llm_wiki` 等项目形成，是 Axis 的工作模型，不是行业标准。
+> 本文基于 2026-09-09 ～ 2026-09-12 连续观察到的 `context-mode`、`Tencent/teamai-cli`、`akitaonrails/ai-memory`、`nashsu/llm_wiki` 等项目形成，是 Axis 的工作模型，不是行业标准。
 
 ## 连续趋势证据
 
@@ -37,6 +38,35 @@ Agent 的 `Context`、`Memory`、`Handoff`、`Knowledge Base` 应如何分层，
 ### nashsu/llm_wiki
 
 将文档增量编译为持久、互联的 Wiki；使用 SHA256 判断来源是否变化，未变化内容跳过重新处理。说明 **Promoted Knowledge 更像可维护的派生知识资产，而不是每次查询都从源文档重新生成答案**。
+
+2026-09-12 该项目 Daily Trending 从前一日知识库记录的约 +94/day 上升到约 +640/day，同时其工程边界进一步值得吸收：
+
+```text
+Raw Sources
+   │
+   ├── immutable / traceable source material
+   │
+   ▼
+Persistent Ingest Queue
+   │
+   ├── change detection / hash
+   ├── normalize
+   └── review candidate
+   │
+   ▼
+Wiki / Promoted Knowledge
+   │
+   ├── index.md
+   ├── wikilinks
+   ├── YAML metadata
+   └── derived explanations
+   │
+   ▼
+Schema / Rules
+   └── how knowledge should be organized and refreshed
+```
+
+它同时兼容 Obsidian 风格文件，并通过本机 API/MCP 暴露知识能力。这进一步强化了 Axis 的判断：**长期知识层应该是可维护、可链接、可刷新、可追溯的派生资产，而不是一个不可审计的 embedding 黑盒。**
 
 ## 建议分层
 
@@ -183,6 +213,19 @@ Recall 不等于“向量相似度最高”。未来可以综合：
 - 重复页面合并；
 - 低价值 Daily 长期归档。
 
+## 2026-09-12：增量刷新与派生知识追踪
+
+`llm_wiki` 的持续增长使以下能力从“可选优化”提升为值得 Axis Knowledge Vault 正式设计的候选：
+
+- **Source Hash / Source Revision**：记录知识来自哪个文件、仓库、URL、commit 或版本。
+- **Incremental Refresh**：来源未变化时不重复处理；来源变化时只刷新受影响派生知识。
+- **Derivation Link**：长期结论应能追溯到来源和产生该结论的研究记录。
+- **Review Queue**：自动生成的候选知识先进入待审，而不是直接污染长期页。
+- **Knowledge Status**：`candidate / working-thesis / verified / deprecated / superseded`。
+- **Deterministic Link**：Obsidian `[[wikilink]]` / stable id 优先于仅靠向量相似度维持关系。
+
+这并不意味着 Axis 必须复制 `llm_wiki` 的实现。知识库当前仍以 Git/Markdown/Obsidian 为最简单可靠的事实载体；未来检索层可以叠加 FTS/Vector，但不应反向绑架知识存储格式。
+
 ## AxisAgent 建议接口边界
 
 不要建立一个什么都做的 `MemoryService`。更合理的逻辑边界：
@@ -210,6 +253,19 @@ Knowledge Gateway
 
 底层可以共享 SQLite、FTS、Vector DB 或文件存储，但**逻辑合同不能因为底层共用数据库而合并**。
 
+未来 Knowledge Gateway 若支持写入，建议再增加：
+
+```text
+Knowledge Ingestion
+  ├── Source Revision
+  ├── Hash / Deduplicate
+  ├── Candidate Extraction
+  ├── Review Queue
+  ├── Promote
+  ├── Refresh Impact
+  └── Supersede / Archive
+```
+
 ## 安全与真实性
 
 1. Agent 自动生成的总结不是事实真源，必须保存来源关联。
@@ -217,6 +273,7 @@ Knowledge Gateway
 3. 涉及项目状态时，项目仓库/正式报告优先于 Vault 摘要。
 4. 自动 Capture 应可审计，自动 Promote 应更严格。
 5. 删除、过期和 supersede 是 Memory 系统的正式能力，不是清理脚本。
+6. 派生 Knowledge 必须保留 Source Revision；来源变化后应重新评估可信度，而不是继续显示为 verified。
 
 ## 当前结论
 
@@ -224,6 +281,8 @@ Axis 后续 Memory 架构建议采用：
 
 **`Working Context ≠ Handoff Memory ≠ Long-term Knowledge`**。
 
+2026-09-12 的 `llm_wiki` 加速进一步支持把长期 Knowledge 建模为 **source-traceable + incrementally refreshable + reviewable derived asset**。
+
 这一分层目前已经得到连续多类开源项目的独立验证信号，值得作为 [[AxisAgent]] 与 [[Axis Knowledge Vault]] 的长期架构原则继续验证。
 
-关联：[[Agent]] · [[Context Engineering]] · [[Memory]] · [[Agent Capability Packaging]] · [[GitHub Trending — 2026-09-11]]
+关联：[[Agent]] · [[Context Engineering]] · [[Memory]] · [[Agent Capability Packaging]] · [[GitHub Trending — 2026-09-11]] · [[GitHub Trending — 2026-09-12]]
