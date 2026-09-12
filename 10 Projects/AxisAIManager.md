@@ -39,7 +39,7 @@ Axis.LocalAIManager 是本地 AI 基础设施控制面，基于 .NET 10、Window
 
 ### Hardware Fit / Measured Performance
 
-2026-09-11 的 [[Local-AI]] 趋势中，`AlexsJones/llmfit` 提供了值得验证的模式：
+2026-09-11 的 [[Local-AI]] 趋势中，`AlexsJones/llmfit` 提供了值得验证的模式；2026-09-12 其 Daily Trending 由知识库前一日记录的约 +247/day 上升到约 +482/day，并继续强化“真实 benchmark 覆盖 estimate”的闭环：
 
 ```text
 Hardware Profile
@@ -50,7 +50,7 @@ Estimated TPS / Memory
   ↓
 Real Benchmark
   ↓
-Measured Result overrides Estimate
+Measured Result overrides / calibrates Estimate
 ```
 
 如果未来进入实现，建议 AxisAIManager 只承担**本地硬件与 Runtime 能力诊断**，不扩张为 Agent Provider Gateway。候选字段包括：
@@ -59,8 +59,12 @@ Measured Result overrides Estimate
 - Model / Quantization / Context；
 - Estimated memory / TPS；
 - Measured TPS / TTFT；
+- Measured peak RAM / VRAM；
+- Runtime / driver / model hash；
 - 数据来源与测量时间；
 - Estimate / Measurement 明确状态。
+
+测量结果必须保存 provenance。不同 Runtime、Driver、Context、Quantization 或模型文件哈希下的 benchmark 不能无条件横向比较。
 
 ### Memory Tier Diagnostics
 
@@ -70,4 +74,4 @@ Measured Result overrides Estimate
 
 它应该保持“Local AI Control Plane”而不是扩张成 Agent 平台。
 
-关联：[[AxisAgent]] · [[Local-AI]] · [[WinForms]] · [[DotNet]] · [[GitHub Trending — 2026-09-11]]
+关联：[[AxisAgent]] · [[Local-AI]] · [[WinForms]] · [[DotNet]] · [[GitHub Trending — 2026-09-11]] · [[GitHub Trending — 2026-09-12]]
