@@ -55,6 +55,43 @@ GitHub Daily Trending 约 **+130 stars/day**，总星约 27k。其核心实验�
 
 对 [[AxisAIManager]]：这属于实验性运行时研究，不应替换当前 llama.cpp 主路径。可以先吸收其硬件诊断与 Memory Tier 思路；只有在目标 Windows GPU 上真实 Benchmark 后才考虑额外 Runtime Adapter。
 
+## 2026-09-12 变化
+
+### AlexsJones/llmfit 加速
+
+Rust Daily Trending 约 **+482 stars/day**，相比昨日知识库记录的 +247/day 明显加速。更重要的是其“真实测量覆盖估算”的闭环已经成为正式能力：
+
+```text
+Detect Hardware
+  ↓
+Estimate Fit / Speed / Memory
+  ↓
+Launch Benchmark
+  ↓
+Measure TPS / TTFT / Memory
+  ↓
+Replace or Calibrate Estimate
+  ↓
+Persist / Share Result
+```
+
+这进一步支持 [[AxisAIManager]] 不应只做静态 Model Catalog。建议未来的数据合同至少区分：
+
+- `EstimatedMemoryBytes`
+- `EstimatedTokensPerSecond`
+- `MeasuredPeakVramBytes`
+- `MeasuredPeakRamBytes`
+- `MeasuredTokensPerSecond`
+- `MeasuredTimeToFirstToken`
+- `BenchmarkRuntime`
+- `BenchmarkModelHash`
+- `BenchmarkTimestamp`
+- `HardwareProfileId`
+
+并保留 benchmark provenance，避免不同 Runtime / Driver / Context / Quantization 的测量结果被误当成可直接比较。
+
+今天没有发现足以替代 llama.cpp 主路径的新 Windows Local AI Runtime。`llmfit` 的价值仍然在 **Capacity Planning + Measurement Feedback**，不是成为推理网关。
+
 ## 当前结论
 
 本地 AI 的管理层正在从“进程启动 + 模型列表”走向：
@@ -73,8 +110,8 @@ Measured TPS / TTFT / VRAM / RAM
 Feedback to Recommendation
 ```
 
-这对 Axis 的价值高于继续增加更多静态模型白名单。
+2026-09-12 的增长再次增强了这一判断。对 Axis 的价值高于继续增加更多静态模型白名单。
 
-参见：[[GitHub Trending — 2026-09-11]]
+参见：[[GitHub Trending — 2026-09-11]] · [[GitHub Trending — 2026-09-12]]
 
 关联：[[Agent]] · [[DotNet]] · [[AxisAgent]] · [[AxisAIManager]]
