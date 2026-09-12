@@ -52,4 +52,19 @@ GitHub Trending 的 AI 热度主要集中在 Python 和 TypeScript，但 C#/.NET
 
 参见：[[GitHub Trending — 2026-09-11]] · [[WinUI]] · [[Agent]]
 
+## 2026-09-12 变化
+
+今天最大的 .NET/C# 信号不是某个新 GUI 框架，而是 **官方领域 Skills 正式化**：
+
+- `Unity-Technologies/skills` 位于 C# Daily Trending，约 **+45 stars/day**。Unity 官方开始将新建项目、CLI 等专业工作流包装为可复用 Agent Skills，并面向多种 Agent 客户端。
+- `dotnet/skills` 位于 C# Daily Trending，约 **+13 stars/day**。绝对热度不高，但它由 .NET 团队维护，已经覆盖 LSP、performance diagnostics、MSBuild、NuGet、upgrade、AI/RAG/MCP、testing、ASP.NET Core、Blazor 等 Plugins/Skills。
+- `dotnet/skills` 还提供 Skill Value dashboard，用 token use、elapsed time、activation、not-passed rate 等指标评估 Skill，这说明领域 Skill 正从“文档资产”走向可度量的工程资产。
+- `CoplayDev/unity-mcp` 周榜仍约 **+227 stars/week**，`IvanMurzak/Unity-MCP` 约 **+138/week**。与 Unity 官方 Skills 一起看，专业软件的合理 AI Surface 越来越清楚：**Domain Skills + MCP/Tool Surface + Permission**。
+- `luolangaga/tubatools` 周榜仍约 **+677 stars/week**；`files-community/Files` 今日约 +87/day。WinUI 真实应用仍有持续关注，但今天没有 WinUI 框架级新突破。
+- Avalonia 本体今日约 +13/day，属于正常活跃度，不足以改变已有判断。
+
+对 Axis：AFSCADA、Protocol Studio、工程工具等应优先建设可复用 Domain Skills 和受控 Tool/MCP Contract，而不是把 AI 逻辑写进 ViewModel/Page；同样应给 Skills 建立版本和效果回归指标。
+
+参见：[[GitHub Trending — 2026-09-12]] · [[Agent]] · [[Agent Capability Packaging]]
+
 关联：[[WinUI]] · [[Avalonia]] · [[Agent]] · [[Local-AI]]
