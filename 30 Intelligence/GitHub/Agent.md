@@ -42,6 +42,9 @@ Agent 开源生态正在从“模型 + Prompt + Tool”转向更完整的工程�
 - `nashsu/llm_wiki` — 增量构建和维护持久知识 Wiki，而不是每次从原始来源重新 RAG。
 - `diegosouzapw/OmniRoute` — 多 Provider Gateway 与可组合 Routing Policy；关注路由层而非其 Provider 数量宣传。
 - `t8y2/dbx` — 专业桌面数据库工具将 MCP 独立分发并进行读/写/高风险写权限分层。
+- `github/spec-kit` — Spec-driven Agent Workflow；规格、计划、任务、检查清单与 Extensions/Presets/Bundles 形成可组合工程流程。
+- `Unity-Technologies/skills` — Unity 官方 Domain Skills，强化“专业工作流 → Skills”路线。
+- `dotnet/skills` — .NET 团队维护的 Plugins/Skills 集合，并开始度量 Skill Value。
 
 ## 2026-09-10 变化
 
@@ -66,11 +69,24 @@ Agent 开源生态正在从“模型 + Prompt + Tool”转向更完整的工程�
 
 参见：[[GitHub Trending — 2026-09-11]] · [[Agent Capability Packaging]] · [[Agent Memory and Knowledge Lifecycle]]
 
+## 2026-09-12 变化
+
+今天出现三个值得提升为长期模型的信号：
+
+1. **Skill → Executable Governance**：`obra/superpowers` 将 brainstorming、计划、TDD、systematic debugging、code review 与完成前验证做成强制 Skill workflow；Skill 不再只是知识提示，而开始表达工程行为与验证门禁。
+2. **Workflow → Versioned Composition**：`github/spec-kit` 的 Extensions / Presets / Bundles 与版本/安装策略说明，项目工程流程也正在获得可组合、可版本化的分发层。
+3. **Vendor Domain Skills**：Unity 官方 `Unity-Technologies/skills` 与 .NET 官方 `dotnet/skills` 同时活跃，说明专业软件/平台厂商正在直接发布领域 Skills。此前“Professional App → MCP Surface”的判断应扩展为 **Professional App → Domain Skills + Controlled MCP/Tool Surface**。
+
+`nashsu/llm_wiki` 从昨日约 +94/day 上升到约 +640/day，也显著增强了“Promoted Knowledge 应作为持久、可维护派生资产”的信号，详见 [[Agent Memory and Knowledge Lifecycle]]。
+
+参见：[[GitHub Trending — 2026-09-12]] · [[Agent Capability Packaging]] · [[Agent Memory and Knowledge Lifecycle]]
+
 ## 对 AxisAgent 的长期启示
 
 建议将以下能力提升为一级架构组件，而不是零散 Service：
 
 - Skill Registry（Source / Version / Scope / Update / Compatibility）
+- Skill Workflow / Verification Metadata
 - Plugin Registry / Manifest / Compatibility
 - Context Engine
 - Session / Handoff Memory
@@ -83,5 +99,6 @@ Agent 开源生态正在从“模型 + Prompt + Tool”转向更完整的工程�
 - Checkpoint / Recovery
 - Streaming Event Pipeline
 - Knowledge Capture / Review / Promote / Recall / Prune
+- Skill Quality Metrics（activation / success / elapsed / token / regression）
 
 关联：[[AxisAgent]]
