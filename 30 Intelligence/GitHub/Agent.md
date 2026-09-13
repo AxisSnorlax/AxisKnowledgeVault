@@ -45,6 +45,11 @@ Agent 开源生态正在从“模型 + Prompt + Tool”转向更完整的工程�
 - `github/spec-kit` — Spec-driven Agent Workflow；规格、计划、任务、检查清单与 Extensions/Presets/Bundles 形成可组合工程流程。
 - `Unity-Technologies/skills` — Unity 官方 Domain Skills，强化“专业工作流 → Skills”路线。
 - `dotnet/skills` — .NET 团队维护的 Plugins/Skills 集合，并开始度量 Skill Value。
+- `superplanehq/superplane` — Durable Work Order / Run / Artifact / Retry 模型，面向验证后可审查的工程自动化。
+- `alphaXiv/OpenResearch` — Local-first Research Agent Workspace；使用独立 Git Worktree、实验树与不可变 Run Snapshot 保存证据链。
+- `pascalorg/editor` — 3D 专业编辑器同时提供 Local/Hosted MCP、Domain Skills 与能力发现。
+- `HakanSeven12/OpenCADStudio` — CAD 专业软件提供版本化 Automation API、Headless Server、MCP 与进程隔离 Plugin。
+- `Tencent/WeKnora` — RAG + Agent + Auto-Wiki；强调 Wiki Revision / Diff / Rollback 与 Cross-session Memory。
 
 ## 2026-09-10 变化
 
@@ -81,6 +86,17 @@ Agent 开源生态正在从“模型 + Prompt + Tool”转向更完整的工程�
 
 参见：[[GitHub Trending — 2026-09-12]] · [[Agent Capability Packaging]] · [[Agent Memory and Knowledge Lifecycle]]
 
+## 2026-09-13 变化
+
+今天新增两个达到架构级价值的信号：
+
+1. **Conversation → Durable Work Record**：`superplanehq/superplane` 将 Work Order、Automation、Run、Retry、Cost、Artifact 和 Event History 作为持久执行记录；`alphaXiv/OpenResearch` 则使用独立 Git Worktree、Experiment Tree 与不可变 Commit Archive 保存每次实验证据。长期来看，Agent Runtime 的 Task/Run Store 应独立于聊天记录，支持恢复、比较、审计和验证。
+2. **Professional App → Stable Agent Surface**：`pascalorg/editor` 与 `OpenCADStudio` 同日出现，和此前 `dbx`、Unity Skills/MCP 形成连续证据。长期模型正式沉淀为 [[Professional Software Agent Surface]]：Domain Core → Automation Contract → MCP/Tool Surface → Domain Skills → Permission / Approval。
+
+Knowledge 方向也得到进一步确认：`Tencent/WeKnora` 把 Auto-Wiki 与 revision history、line diff、rollback、人工编辑结合起来，说明 Promoted Knowledge 除来源和增量刷新外，还需要可逆的版本治理。
+
+参见：[[GitHub Trending — 2026-09-13]] · [[Professional Software Agent Surface]] · [[Agent Memory and Knowledge Lifecycle]]
+
 ## 对 AxisAgent 的长期启示
 
 建议将以下能力提升为一级架构组件，而不是零散 Service：
@@ -97,6 +113,7 @@ Agent 开源生态正在从“模型 + Prompt + Tool”转向更完整的工程�
 - Browser/Computer Runtime
 - Approval & Permission
 - Checkpoint / Recovery
+- Durable Run Record / Evidence Lineage
 - Streaming Event Pipeline
 - Knowledge Capture / Review / Promote / Recall / Prune
 - Skill Quality Metrics（activation / success / elapsed / token / regression）
