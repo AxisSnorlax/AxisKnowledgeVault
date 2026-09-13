@@ -22,6 +22,7 @@ tags:
 - Browser / Computer / Terminal / Files / Git
 - Checkpoint / Recovery
 - Verification / Result / Artifact
+- Durable Run Record / Evidence Lineage
 - Streaming Event Pipeline
 
 ## 推荐架构
@@ -143,6 +144,61 @@ Prune / Archive
 
 任何自动 fallback 都必须保留用户约束、权限和可审计记录。
 
+## Durable Run Record 与 Evidence Lineage
+
+2026-09-13 的连续生态信号进一步说明：**Conversation 不应等价于 Task/Run Store。**
+
+`superplanehq/superplane` 把 Work Order、Automation、Run、Retry、Cost、Event History 和 Artifact 作为持久工程记录；`alphaXiv/OpenResearch` 则使用独立 Agent Session + Git Worktree、Experiment Tree 与不可变 Commit Archive 保存每次实验来源和结果。
+
+对通用 Agent Runtime，更合理的模型是：
+
+```text
+Conversation
+    ↓
+Task
+    ↓
+Run
+├── Input Snapshot
+├── Workspace / Branch Identity
+├── Tool Events
+├── Approval Events
+├── Checkpoints
+├── Artifacts / Diffs / Logs
+├── Verification Evidence
+├── Retry / Parent Run Lineage
+├── Cost / Timing
+└── Final Result
+```
+
+关键原则：
+
+1. Conversation 是人机交互视图，不是完整执行事实。
+2. 每个 Run 都应拥有稳定 identity，并可从 Checkpoint 恢复。
+3. 并行 Subagent 必须有独立 Workspace/Branch/Run identity，避免多个 Agent 共享模糊状态。
+4. Artifact、Diff、Log、Verification 应与产生它们的 Run 绑定，而不是只附在聊天消息上。
+5. Retry 必须保留 parent/previous attempt lineage，不能覆盖失败证据。
+6. Final Result 应能回溯到 Input Snapshot、Approvals、Tools 和 Verification。
+
+这对 [[AxisAgent]] 的价值尤其高：未来无论 Coding、Research、Browser/Computer Use 还是专业软件操作，都可以统一进入可恢复、可审计的 Run 模型。
+
+## Professional Software Agent Surface
+
+连续观察专业软件领域后，建议把“Agent 接入专业应用”独立成长期模式：
+
+```text
+Domain Core
+   ↓
+Automation Contract
+   ↓
+MCP / Tool Surface
+   ↓
+Domain Skills
+   ↓
+Permission / Approval
+```
+
+UI 页面不应直接成为 Agent API；真实写操作必须继续经过 Domain/Application 规则。详细研究见 [[Professional Software Agent Surface]]。
+
 ## 设计原则
 
 1. Harness 统一调度，避免能力散落到多个互相交叉的 Manager。
@@ -153,5 +209,7 @@ Prune / Archive
 6. Agent 的完成标准是可验证的工作结果，而不是“生成了一段回答”。
 7. Plugin/Skill 必须有来源、版本、兼容性和权限声明；高权限能力不能仅靠 Prompt 约束。
 8. Provider Routing 必须可解释、可审计，并尊重用户对本地/云、成本和隐私的明确约束。
+9. Conversation、Task、Run、Artifact 和 Verification 必须保持可追踪关系，避免聊天历史成为唯一事实存储。
+10. 专业软件的 Agent Surface 应复用稳定 Domain/Automation Contract，不应绕过业务状态机直接修改底层数据。
 
-关联：[[AxisAgent]] · [[Local-AI]] · [[GitHub Trending — 2026-09-09]] · [[GitHub Trending — 2026-09-10]] · [[GitHub Trending — 2026-09-11]]
+关联：[[AxisAgent]] · [[Local-AI]] · [[Professional Software Agent Surface]] · [[GitHub Trending — 2026-09-09]] · [[GitHub Trending — 2026-09-10]] · [[GitHub Trending — 2026-09-11]] · [[GitHub Trending — 2026-09-12]] · [[GitHub Trending — 2026-09-13]]
