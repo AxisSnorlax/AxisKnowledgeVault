@@ -50,6 +50,7 @@ Agent 开源生态正在从“模型 + Prompt + Tool”转向更完整的工程�
 - `pascalorg/editor` — 3D 专业编辑器同时提供 Local/Hosted MCP、Domain Skills 与能力发现。
 - `HakanSeven12/OpenCADStudio` — CAD 专业软件提供版本化 Automation API、Headless Server、MCP 与进程隔离 Plugin。
 - `Tencent/WeKnora` — RAG + Agent + Auto-Wiki；强调 Wiki Revision / Diff / Rollback 与 Cross-session Memory。
+- `tech-leads-club/agent-skills` — Secure Skill Registry；把静态扫描、内容哈希、Lockfile、路径隔离、审计与回滚带入 Skill 分发链。
 
 ## 2026-09-10 变化
 
@@ -97,12 +98,23 @@ Knowledge 方向也得到进一步确认：`Tencent/WeKnora` 把 Auto-Wiki 与 r
 
 参见：[[GitHub Trending — 2026-09-13]] · [[Professional Software Agent Surface]] · [[Agent Memory and Knowledge Lifecycle]]
 
+## 2026-09-14 变化
+
+今天新增一个足以独立沉淀的长期信号，并确认一个昨日结论继续加速：
+
+1. **Skill Package → Skill Supply Chain**：`tech-leads-club/agent-skills` 将 static scan、content hash、lockfile、path/symlink guard、audit trail 与发布前安全扫描加入 Skill Catalog。至此 Skill Registry 不能只处理 Source / Version / Scope / Install / Update，还必须处理 Trust / Integrity / Scan / Audit / Rollback。详见 [[Agent Skill Supply Chain]]。
+2. **Progressive Disclosure → Skill/MCP Catalog 基线**：该项目的 MCP Surface 采用 `search/list metadata → read primary skill → fetch required references`，进一步支持 Context Engine 不应一次性注入完整 Catalog。
+3. **Durable Run / Evidence Lineage 继续增强但不重复建模**：`alphaXiv/OpenResearch` 从昨日约 +120/day 加速至今日约 +304/day，继续验证独立 Worktree、不可变 Run Snapshot 与 Artifact lineage 的价值，但沿用 2026-09-13 已沉淀模型。
+
+参见：[[GitHub Trending — 2026-09-14]] · [[Agent Skill Supply Chain]] · [[Agent Capability Packaging]]
+
 ## 对 AxisAgent 的长期启示
 
 建议将以下能力提升为一级架构组件，而不是零散 Service：
 
 - Skill Registry（Source / Version / Scope / Update / Compatibility）
 - Skill Workflow / Verification Metadata
+- Skill Supply-chain Trust / Integrity / Scan / Audit / Rollback
 - Plugin Registry / Manifest / Compatibility
 - Context Engine
 - Session / Handoff Memory
