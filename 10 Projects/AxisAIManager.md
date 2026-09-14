@@ -68,10 +68,68 @@ Measured Result overrides / calibrates Estimate
 
 ### Memory Tier Diagnostics
 
-`JustVugg/colibri` 的 VRAM / RAM / NVMe 分层权重与硬件规划属于实验性研究。当前只值得吸收其 **Memory Tier、Storage Bandwidth、Residency、KV/Prefix Reuse 的诊断思路**，不构成替换 llama.cpp 的理由。任何 Runtime Adapter 都必须在真实 Windows 目标硬件上通过可重复 benchmark 后再进入产品范围。
+`JustVugg/colibri` 的 VRAM / RAM / NVMe 分层权重与硬件规划属于实验性研究。2026-09-14 其 GitHub Trending 约 +960/day，相比知识库 2026-09-11 记录的约 +130/day 显著加速，并进一步突出 `plan / doctor / tune`、VRAM/RAM/Disk placement、Storage I/O 与 partial/full expert residency。
+
+当前仍只值得吸收其 **Memory Tier、Storage Bandwidth、Residency、KV/Prefix Reuse 的诊断思路**，不构成替换 llama.cpp 的理由。任何 Runtime Adapter 都必须在真实 Windows 目标硬件上通过可重复 benchmark 后再进入产品范围。
+
+未来 Hardware Profile 候选可增加：
+
+- Storage Tier / Device；
+- Sequential / Random Read Bandwidth；
+- Model Placement；
+- Weight / Expert Residency Budget；
+- Runtime Tune Profile；
+- Tune / Benchmark Provenance。
+
+这些字段应与静态硬件枚举分开，明确哪些是检测值、估算值和实测值。
+
+### Multi-modal Engine / Capability Registry
+
+2026-09-14 的 [[Local-AI]] 趋势中，`debpalash/VoiceStudio` 展示了一个值得研究的控制面模型：同一桌面产品管理多个 TTS / ASR Engine、Model Catalogue、GPU Backend、Remote Worker、Health/Diagnostics、OpenAI-compatible local API、MCP 与 Agent Skills。
+
+这**不代表 AxisAIManager 当前已经支持这些能力，也不意味着下一版必须扩大产品范围**。它只提供一个未来边界参考：如果 Axis 需要把 ASR、TTS、VLM、图像生成等能力纳入本地控制面，应避免为每种模态重复建立一套互不兼容的生命周期管理代码。
+
+候选抽象：
+
+```text
+Capability
+  ├── chat
+  ├── embedding
+  ├── vision
+  ├── tts
+  ├── asr
+  └── image
+       ↓
+Engine Adapter
+       ↓
+Model
+       ↓
+Device / Backend
+       ↓
+Health / Availability
+       ↓
+Route / Local Endpoint
+```
+
+候选数据至少应考虑：
+
+- `CapabilityKind`
+- `EngineId / EngineVersion`
+- `ModelId / ModelHash`
+- `Device / Backend`
+- `Health / Availability`
+- `LocalEndpoint`
+- `RemoteWorker`（可选）
+- `Source`
+- `License`
+- `Redistribution / CommercialUse` 元数据
+
+尤其要把**应用许可证**与**模型权重许可证**分开记录，不能因为管理器或 Engine 开源就推断模型可自由分发或商用。
+
+如果未来实现，对 [[AxisAgent]] 暴露的仍应是稳定的本地 Provider / Capability Contract，而不是让 Agent Runtime 直接依赖每个 ASR/TTS/VLM 厂商 SDK。
 
 ## 长期定位
 
-它应该保持“Local AI Control Plane”而不是扩张成 Agent 平台。
+它应该保持“Local AI Control Plane”而不是扩张成 Agent 平台。未来即使增加多模态 Engine，也应继续遵守：Manager 管基础设施、模型与运行时生命周期；[[AxisAgent]] 管会话、决策、工具、Memory、MCP 和 Agent Workflow。
 
-关联：[[AxisAgent]] · [[Local-AI]] · [[WinForms]] · [[DotNet]] · [[GitHub Trending — 2026-09-11]] · [[GitHub Trending — 2026-09-12]]
+关联：[[AxisAgent]] · [[Local-AI]] · [[WinForms]] · [[DotNet]] · [[GitHub Trending — 2026-09-11]] · [[GitHub Trending — 2026-09-12]] · [[GitHub Trending — 2026-09-14]]
