@@ -92,26 +92,96 @@ Persist / Share Result
 
 今天没有发现足以替代 llama.cpp 主路径的新 Windows Local AI Runtime。`llmfit` 的价值仍然在 **Capacity Planning + Measurement Feedback**，不是成为推理网关。
 
+## 2026-09-14 变化
+
+### debpalash/VoiceStudio
+
+GitHub Trending 约 **+2,546 stars/day**。它将本地 AI 桌面控制面从单一 LLM/Embedding 扩展到多模态 Engine Registry：
+
+- 16 个 TTS Engine、11 个 ASR Engine；
+- 大规模 Model Catalogue；
+- CUDA / MPS / MLX / ROCm / CPU；
+- GPU Auto-Detect 与 Remote Worker；
+- OpenAI-compatible Audio API；
+- MCP Server 与 Agent Skills；
+- Diagnostics、Health 与本地数据存储；
+- 桌面壳与后端 Engine/Worker 控制面解耦。
+
+对 [[AxisAIManager]] 的价值不是复制其产品范围，而是验证一个更通用的控制面抽象：
+
+```text
+Capability
+  ↓
+Engine Adapter
+  ↓
+Model
+  ↓
+Device / Backend
+  ↓
+Health / Availability
+  ↓
+Route / Local Endpoint
+```
+
+如果未来进入语音/VLM/图像能力，应优先复用统一 Engine Registry，而不是为 TTS、ASR、VLM 各自建立不兼容的生命周期管理器。
+
+另一个重要提醒：应用许可证与模型权重许可证是两件事。Model / Engine Catalog 应保留独立 `source / license / redistribution / commercial-use` 元数据。
+
+### JustVugg/colibri 再次加速
+
+今日 GitHub Trending 约 **+960 stars/day**，相比知识库 2026-09-11 记录的约 +130/day 已出现数量级加速。其近期工程重点进一步强化：
+
+- `plan`：检查 VRAM / RAM / Disk placement；
+- `doctor`：只读 readiness / preflight；
+- `tune`：在当前机器上测量并保存最快安全 profile；
+- Storage I/O 被视为 inference engine 的一部分；
+- 支持 CPU/CUDA/Metal/NUMA 异构执行以及 partial/full expert residency。
+
+这说明超大本地模型的 Hardware Profile 不应只包含 CPU / RAM / GPU / VRAM，还应逐步研究：
+
+- Storage Tier；
+- Sequential / Random Read Bandwidth；
+- Model Placement；
+- Weight / Expert Residency Budget；
+- Runtime Tune Profile；
+- Measurement Provenance。
+
+边界不变：`colibri` 仍然只是 Runtime Research Candidate，目前没有足够证据替换 llama.cpp 主路径。
+
 ## 当前结论
 
-本地 AI 的管理层正在从“进程启动 + 模型列表”走向：
+本地 AI 管理层正在从“进程启动 + 模型列表”逐步走向两层统一控制面：
 
 ```text
 Hardware Profile
   ↓
-Fit / Capacity Planning
+Fit / Capacity / Storage Planning
   ↓
 Model + Quantization + Context Recommendation
   ↓
-Runtime Launch
+Runtime / Engine Launch
   ↓
-Measured TPS / TTFT / VRAM / RAM
+Measured TPS / TTFT / VRAM / RAM / Storage
   ↓
 Feedback to Recommendation
 ```
 
-2026-09-12 的增长再次增强了这一判断。对 Axis 的价值高于继续增加更多静态模型白名单。
+以及：
 
-参见：[[GitHub Trending — 2026-09-11]] · [[GitHub Trending — 2026-09-12]]
+```text
+Capability (chat/embed/vision/tts/asr/image)
+  ↓
+Engine Adapter
+  ↓
+Model
+  ↓
+Device / Backend
+  ↓
+Health / Route / Local Endpoint
+```
+
+2026-09-14 的 `VoiceStudio` 与 `colibri` 分别增强了 **Multi-modal Engine Control Plane** 和 **Storage-aware Capacity Planning** 两个方向。对 Axis 的价值高于继续增加更多静态模型白名单，但都必须先作为研究候选，不应污染当前实现事实。
+
+参见：[[GitHub Trending — 2026-09-11]] · [[GitHub Trending — 2026-09-12]] · [[GitHub Trending — 2026-09-14]]
 
 关联：[[Agent]] · [[DotNet]] · [[AxisAgent]] · [[AxisAIManager]]
