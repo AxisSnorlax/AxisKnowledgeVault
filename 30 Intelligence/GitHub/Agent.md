@@ -51,6 +51,9 @@ Agent 开源生态正在从“模型 + Prompt + Tool”转向更完整的工程�
 - `HakanSeven12/OpenCADStudio` — CAD 专业软件提供版本化 Automation API、Headless Server、MCP 与进程隔离 Plugin。
 - `Tencent/WeKnora` — RAG + Agent + Auto-Wiki；强调 Wiki Revision / Diff / Rollback 与 Cross-session Memory。
 - `tech-leads-club/agent-skills` — Secure Skill Registry；把静态扫描、内容哈希、Lockfile、路径隔离、审计与回滚带入 Skill 分发链。
+- `alibaba/open-code-review` — Deterministic Engineering × Agent；关键步骤由确定性工程保证，Agent 专注动态判断与检索。
+- `github/gh-aw` — Agentic Workflows；持续强化 Run/MCP 可观测性、Safe Output、Threat Detection 与 Credential Blast Radius。
+- `Panniantong/Agent-Reach` — Internet Capability Layer；按真实 Health Probe 在多个 Backend Adapter 之间选择与回退。
 
 ## 2026-09-10 变化
 
@@ -108,6 +111,17 @@ Knowledge 方向也得到进一步确认：`Tencent/WeKnora` 把 Auto-Wiki 与 r
 
 参见：[[GitHub Trending — 2026-09-14]] · [[Agent Skill Supply Chain]] · [[Agent Capability Packaging]]
 
+## 2026-09-15 变化
+
+今天出现两个新的工程级信号，并确认两个既有方向继续加速：
+
+1. **Prompt Guardrail → Deterministic Runtime Contract**：`alibaba/open-code-review` 今日约 +1,796/day。其核心设计把文件选择、Work Unit 分组、规则匹配、定位与反射等关键步骤放到确定性工程层，Agent 只处理动态决策和上下文检索。长期原则正式沉淀为 [[Deterministic Agent Runtime]]：不能出错的步骤用代码/状态机/验证器保证，Agent 只进入允许探索的决策区。
+2. **Durable Run → Observable / Security-aware Run**：GitHub `gh-aw` 2026-09-14 官方周报显示 MCP Tool Call 已进入结构化日志，且持续强化 Threat Detection、Safe Output、凭据不持久化与 Action SHA Pinning。这让 Durable Run / Evidence Lineage 从“留痕”进一步升级为 Runtime Governance。
+3. **Skill Supply Chain 继续加速**：`tech-leads-club/agent-skills` 从知识库昨日记录的约 +215/day 上升到今日约 +506/day，说明 Source / Digest / Scan / Lock / Audit / Rollback 不是单日噪声。
+4. **Capability → Adapter Router**：`Panniantong/Agent-Reach` 今日约 +640/day。其 `Capability → ordered backends → real probe → selected backend → fallback/doctor` 模式值得 Browser/Search Runtime 借鉴，但登录态/Cookie 类非官方接入路径存在账号与凭据风险，不能直接复制。
+
+参见：[[GitHub Trending — 2026-09-15]] · [[Deterministic Agent Runtime]] · [[Agent Skill Supply Chain]]
+
 ## 对 AxisAgent 的长期启示
 
 建议将以下能力提升为一级架构组件，而不是零散 Service：
@@ -122,12 +136,15 @@ Knowledge 方向也得到进一步确认：`Tencent/WeKnora` 把 Auto-Wiki 与 r
 - Tool Registry
 - MCP Runtime
 - Provider Routing Policy
+- Capability Adapter Routing / Health Probe / Fallback
 - Browser/Computer Runtime
 - Approval & Permission
 - Checkpoint / Recovery
 - Durable Run Record / Evidence Lineage
+- Deterministic Runtime Contract
+- Runtime Observability / Credential Scope / Threat & Safe-output Evidence
 - Streaming Event Pipeline
 - Knowledge Capture / Review / Promote / Recall / Prune
 - Skill Quality Metrics（activation / success / elapsed / token / regression）
 
-关联：[[AxisAgent]]
+关联：[[AxisAgent]] · [[Deterministic Agent Runtime]]
