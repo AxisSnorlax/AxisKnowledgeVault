@@ -18,7 +18,7 @@ tags:
 
 当 Skill 从本地 `SKILL.md` 演化成可发现、可安装、可更新、跨 Agent 分发的软件资产后，应该如何治理来源、完整性、安全扫描、审计与回滚？
 
-> 当前结论来自 2026-09-09 ～ 2026-09-14 对 `openai/skills`、`vercel-labs/skills`、`Tencent/teamai-cli`、`dotnet/skills`、`Unity-Technologies/skills`、`obra/superpowers`、`github/spec-kit` 与 `tech-leads-club/agent-skills` 的连续观察。它是 Axis 的工作假设，不是行业正式标准。
+> 当前结论来自 2026-09-09 ～ 2026-09-15 对 `openai/skills`、`vercel-labs/skills`、`Tencent/teamai-cli`、`dotnet/skills`、`Unity-Technologies/skills`、`obra/superpowers`、`github/spec-kit` 与 `tech-leads-club/agent-skills` 的连续观察。它是 Axis 的工作假设，不是行业正式标准。
 
 ## 为什么需要独立 Supply-chain 层
 
@@ -74,7 +74,7 @@ Skill/Workflow 已经能够强制表达 planning、TDD、debugging、review、ve
 
 ### tech-leads-club/agent-skills
 
-2026-09-14 GitHub Trending 约 +215/day。其显式 Supply-chain 设计包括：
+2026-09-14 GitHub Trending 约 +215/day；2026-09-15 上升到约 **+506/day**，继续明显加速。其显式 Supply-chain 设计包括：
 
 - source-only distribution；
 - CI static analysis；
@@ -87,7 +87,7 @@ Skill/Workflow 已经能够强制表达 planning、TDD、debugging、review、ve
 - 发布前 Agent Skill security scan；
 - MCP progressive disclosure：先 search/list，再 read/fetch references。
 
-这个项目的重要性不在“它的 Catalog 比别人多”，而在于它把 **Trust / Integrity / Audit** 变成 Skill 分发的一等问题。
+这个项目的重要性不在“它的 Catalog 比别人多”，而在于它把 **Trust / Integrity / Audit** 变成 Skill 分发的一等问题；连续两日加速则说明这一问题正在从小众安全议题进入更广泛的 Agent 工程实践。
 
 ## AxisAgent 建议模型
 
@@ -194,6 +194,18 @@ Plugin
 
 Plugin Supply Chain 是更高一级问题；Skill Supply Chain 可以先独立落地，并共享 Source / Publisher / Integrity / Compatibility / Audit 数据结构。
 
+## 2026-09-15 复验
+
+`tech-leads-club/agent-skills` 从 2026-09-14 记录的约 +215/day 上升到约 +506/day。新增判断不是“Star 更高”，而是以下模型已连续得到验证：
+
+- 安装来源、版本与内容摘要需要被锁定；
+- 静态扫描和 Runtime Permission 必须分层；
+- 更新后需要重新验证完整性与兼容性；
+- Skill Catalog 应使用 progressive disclosure，避免一次性扩大 Context 和攻击面；
+- Rollback / Audit 不是附加功能，而是 Workflow Skill 进入正式工程环境后的基本治理能力。
+
+因此本页仍保持 `working-thesis`，但已经不再把 Skill Supply Chain 视为单项目特例。
+
 ## 对 Axis 的当前建议
 
 - [[AxisAgent]]：Skill Registry 不再只扫描目录；正式预留 Source/Version/Digest/Trust/Scan/Lock/Audit/Rollback。
@@ -203,4 +215,4 @@ Plugin Supply Chain 是更高一级问题；Skill Supply Chain 可以先独立�
 - 高风险 Skill 应允许组织策略禁止安装，即使来源可验证。
 - Skill Quality Metrics 与 Security Metrics 分开：安全不代表有效，有效也不代表安全。
 
-关联：[[Agent Capability Packaging]] · [[Skills]] · [[MCP]] · [[Agent]] · [[AxisAgent]] · [[GitHub Trending — 2026-09-14]]
+关联：[[Agent Capability Packaging]] · [[Skills]] · [[MCP]] · [[Agent]] · [[AxisAgent]] · [[GitHub Trending — 2026-09-14]] · [[GitHub Trending — 2026-09-15]]
