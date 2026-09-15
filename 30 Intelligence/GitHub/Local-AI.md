@@ -148,6 +148,37 @@ Route / Local Endpoint
 
 边界不变：`colibri` 仍然只是 Runtime Research Candidate，目前没有足够证据替换 llama.cpp 主路径。
 
+## 2026-09-15 变化
+
+### JustVugg/colibri 继续强烈加速
+
+今日 GitHub Trending 约 **+2,233 stars/day**，相比 2026-09-14 记录的约 +960/day 再次大幅上升。
+
+今天更值得沉淀的不是 Star，而是其工程验证原则已经非常明确：
+
+- VRAM / RAM / NVMe 是同一个 placement hierarchy；
+- fast-memory 不足只能影响速度，不能静默改变模型语义；
+- routing history、prefetch、multi-SSD、CPU/GPU overlap、speculation 等优化都只是 hypothesis；
+- 必须通过端到端 A/B 证明收益；
+- benchmark 要同时记录 throughput、TTFT、memory、bytes read、cache state 与 quality/correctness；
+- 推荐保留 hardware、commit、model/container、exact command、prompt 与 raw logs，且一次只改变一个变量。
+
+这进一步把 [[AxisAIManager]] 的 Benchmark Provenance 从“记录结果”提升为“记录可复现实验条件”。建议候选字段继续增加：
+
+- Runtime Commit / Version；
+- Exact Launch Arguments；
+- Cache State；
+- Storage Device / Bandwidth；
+- Model Placement；
+- Prompt / Workload Profile；
+- Quality / Correctness Check；
+- Raw Log / Artifact Reference；
+- Changed Variable / Baseline Run。
+
+长期原则：**Microbenchmark 不能替代端到端资格；性能优化不能以静默降低模型语义、精度或验证质量为代价。**
+
+边界仍然不变：这只是 Runtime Research Candidate，没有足够证据让 AxisAIManager 替换 llama.cpp 主路径。
+
 ## 当前结论
 
 本地 AI 管理层正在从“进程启动 + 模型列表”逐步走向两层统一控制面：
@@ -162,6 +193,8 @@ Model + Quantization + Context Recommendation
 Runtime / Engine Launch
   ↓
 Measured TPS / TTFT / VRAM / RAM / Storage
+  ↓
+Reproducible Benchmark Provenance
   ↓
 Feedback to Recommendation
 ```
@@ -180,8 +213,8 @@ Device / Backend
 Health / Route / Local Endpoint
 ```
 
-2026-09-14 的 `VoiceStudio` 与 `colibri` 分别增强了 **Multi-modal Engine Control Plane** 和 **Storage-aware Capacity Planning** 两个方向。对 Axis 的价值高于继续增加更多静态模型白名单，但都必须先作为研究候选，不应污染当前实现事实。
+2026-09-14 的 `VoiceStudio` 与 2026-09-15 持续加速的 `colibri` 分别增强了 **Multi-modal Engine Control Plane** 和 **Storage-aware / Evidence-based Capacity Planning** 两个方向。对 Axis 的价值高于继续增加更多静态模型白名单，但都必须先作为研究候选，不应污染当前实现事实。
 
-参见：[[GitHub Trending — 2026-09-11]] · [[GitHub Trending — 2026-09-12]] · [[GitHub Trending — 2026-09-14]]
+参见：[[GitHub Trending — 2026-09-11]] · [[GitHub Trending — 2026-09-12]] · [[GitHub Trending — 2026-09-14]] · [[GitHub Trending — 2026-09-15]]
 
 关联：[[Agent]] · [[DotNet]] · [[AxisAgent]] · [[AxisAIManager]]

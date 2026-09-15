@@ -68,20 +68,31 @@ Measured Result overrides / calibrates Estimate
 
 ### Memory Tier Diagnostics
 
-`JustVugg/colibri` 的 VRAM / RAM / NVMe 分层权重与硬件规划属于实验性研究。2026-09-14 其 GitHub Trending 约 +960/day，相比知识库 2026-09-11 记录的约 +130/day 显著加速，并进一步突出 `plan / doctor / tune`、VRAM/RAM/Disk placement、Storage I/O 与 partial/full expert residency。
+`JustVugg/colibri` 的 VRAM / RAM / NVMe 分层权重与硬件规划属于实验性研究。2026-09-14 其 GitHub Trending 约 +960/day，相比知识库 2026-09-11 记录的约 +130/day 显著加速；2026-09-15 又升至约 **+2,233/day**，并进一步强化“所有优化都要用端到端 A/B 证明”的研究原则。
 
-当前仍只值得吸收其 **Memory Tier、Storage Bandwidth、Residency、KV/Prefix Reuse 的诊断思路**，不构成替换 llama.cpp 的理由。任何 Runtime Adapter 都必须在真实 Windows 目标硬件上通过可重复 benchmark 后再进入产品范围。
+当前仍只值得吸收其 **Memory Tier、Storage Bandwidth、Residency、KV/Prefix Reuse 与实验验证方法**，不构成替换 llama.cpp 的理由。任何 Runtime Adapter 都必须在真实 Windows 目标硬件上通过可重复 benchmark 后再进入产品范围。
 
-未来 Hardware Profile 候选可增加：
+未来 Hardware Profile / Benchmark Provenance 候选可增加：
 
 - Storage Tier / Device；
 - Sequential / Random Read Bandwidth；
 - Model Placement；
 - Weight / Expert Residency Budget；
 - Runtime Tune Profile；
+- Runtime Commit / Version；
+- Exact Launch Arguments；
+- Cache State；
+- Prompt / Workload Profile；
+- Quality / Correctness Check；
+- Raw Log / Artifact Reference；
+- Baseline Run / Changed Variable；
 - Tune / Benchmark Provenance。
 
 这些字段应与静态硬件枚举分开，明确哪些是检测值、估算值和实测值。
+
+建议长期遵守：
+
+> **Microbenchmark 不能替代端到端资格；性能优化不能静默改变模型精度、路由语义或验证质量。**
 
 ### Multi-modal Engine / Capability Registry
 
@@ -132,4 +143,4 @@ Route / Local Endpoint
 
 它应该保持“Local AI Control Plane”而不是扩张成 Agent 平台。未来即使增加多模态 Engine，也应继续遵守：Manager 管基础设施、模型与运行时生命周期；[[AxisAgent]] 管会话、决策、工具、Memory、MCP 和 Agent Workflow。
 
-关联：[[AxisAgent]] · [[Local-AI]] · [[WinForms]] · [[DotNet]] · [[GitHub Trending — 2026-09-11]] · [[GitHub Trending — 2026-09-12]] · [[GitHub Trending — 2026-09-14]]
+关联：[[AxisAgent]] · [[Local-AI]] · [[WinForms]] · [[DotNet]] · [[GitHub Trending — 2026-09-11]] · [[GitHub Trending — 2026-09-12]] · [[GitHub Trending — 2026-09-14]] · [[GitHub Trending — 2026-09-15]]
