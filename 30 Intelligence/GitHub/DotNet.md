@@ -67,4 +67,25 @@ GitHub Trending 的 AI 热度主要集中在 Python 和 TypeScript，但 C#/.NET
 
 参见：[[GitHub Trending — 2026-09-12]] · [[Agent]] · [[Agent Capability Packaging]]
 
+## 2026-09-16 变化
+
+今天 C#/.NET 最有价值的新信号是 `iOfficeAI/OfficeCLI`，C# Daily Trending 约 **+276 stars/day**。它验证了一个比“再造通用 Agent Framework”更适合 .NET 的方向：**把成熟专业数据/文档能力包装成确定性、结构化、可验证的 Agent Surface。**
+
+值得吸收的工程模式：
+
+- 命令返回稳定 Structured JSON，而不是要求 Agent 用正则解析 stdout；
+- 文档元素拥有稳定 Path / Identity；
+- Read / structured DOM-like access / raw XML 形成渐进复杂度；
+- Batch 默认 atomic，任一失败可整体 rollback；
+- `validate`、issues、HTML/PNG render 形成执行后的独立检查与视觉验证；
+- CLI、SDK、MCP 共享同一 Domain Contract，MCP 不是业务核心本身。
+
+这使此前的 .NET 长期判断进一步收敛：C#/.NET 的 AI 差异化应重点建设 **Professional Software Agent Surface + Domain Skills + Deterministic Contract + Native/Windows Integration**。
+
+同日 `dotnet/skills` 约 **+53 stars/day**，相比 2026-09-12 记录的约 +13/day 明显增强，但仍属于既有 Domain Skills 趋势的延续；`CoplayDev/unity-mcp` 今日约 +29/day，也继续验证专业软件 MCP Surface。
+
+今天没有足以改变 WinUI 3、WPF 或 Avalonia 技术判断的新框架级事件，因此不机械修改对应 UI 索引。
+
+参见：[[GitHub Trending — 2026-09-16]] · [[Professional Software Agent Surface]] · [[Agent]]
+
 关联：[[WinUI]] · [[Avalonia]] · [[Agent]] · [[Local-AI]]
