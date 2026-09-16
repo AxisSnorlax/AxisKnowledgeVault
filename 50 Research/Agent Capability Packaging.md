@@ -2,7 +2,7 @@
 type: research
 status: working-thesis
 date: 2026-09-10
-updated: 2026-09-12
+updated: 2026-09-16
 topic: agent-capability-packaging
 tags:
   - agent
@@ -19,7 +19,7 @@ tags:
 
 Agent 生态中的 `Skill`、`Plugin`、`Harness`、`Team Harness` 应如何区分？它们在 [[AxisAgent]] 中应对应什么边界？
 
-> 当前结论是基于 2026-09-09 ～ 2026-09-12 的开源项目连续观察形成的**工作假设**，不是行业正式标准。
+> 当前结论是基于 2026-09-09 ～ 2026-09-16 的开源项目连续观察形成的**工作假设**，不是行业正式标准。
 
 ## 观察证据
 
@@ -177,6 +177,58 @@ Professional Application
 - Verification Pass Rate
 - Version Regression
 
+### PrimeIntellect-ai/prime-agent：Continual Harness State
+
+2026-09-16 的重要新增证据。Prime Agent 把 Harness 从静态配置进一步推进到**受控、可回滚的持续改进状态**：
+
+- Base System Prompt 明确保持 immutable；
+- Supplemental Prompt Notes、Memories、Skills、Subagent Specs 作为 Durable Harness State；
+- `/refine` 只应做 small / focused / evidence-backed update；
+- 变化可以 local/session-scoped，也可以显式提升到 global；
+- applied change 保留 before/after snapshot 并支持 rollback；
+- 重复失败、可复用策略、稳定 delegation role、长期事实才是 refinement 候选，而不是每轮自动重写 Harness。
+
+这补上了此前 Skill / Plugin / Harness 分层缺少的一块：**Harness 自身也需要正式状态模型和变更治理。**
+
+推荐模型：
+
+```text
+Immutable Base Contract
+  ├── Security Boundary
+  ├── Permission / Approval Invariants
+  ├── Core Runtime Rules
+  └── Verification Invariants
+        │
+        ▼
+Mutable Supplemental Harness State
+  ├── Prompt Notes
+  ├── Memories
+  ├── Skills / Skill Hints
+  └── Subagent Specs
+        │
+        ▼
+Refinement Proposal
+  ├── Trigger / Evidence
+  ├── Scope (session / project / global)
+  ├── Before / After
+  ├── Validation
+  └── Risk Classification
+        │
+        ▼
+Snapshot → Apply → Observe → Keep / Rollback
+```
+
+对 [[AxisAgent]] 的关键约束：
+
+1. **自适应层永远不能修改安全边界。** Permission、Secret、Workspace Boundary、危险操作审批、完成判定等属于 Immutable Contract。
+2. **Refinement 必须是 Delta，不是整份 Prompt Rewrite。** 便于 Review、回归和回滚。
+3. **每个 Delta 必须有来源与证据。** 至少记录触发 Run、失败/成功证据、适用 Scope 与创建者。
+4. **Global Promote 应比 Session-local 严格。** Session 中有效的经验不能自动变成所有项目的长期行为。
+5. **Harness Quality 也应可度量。** 更新前后比较成功率、Tool Error、Token、Duration、Verification Pass 和副作用。
+6. **Process / Worker Isolation 不等于 Security Sandbox。** 代码执行隔离必须另有 OS / Container / Capability 层保障。
+
+这与 [[Agent Memory and Knowledge Lifecycle]] 互补：Harness State 不是长期事实知识库，而是“Agent 如何工作”的受控运行资产。
+
 ## 建议分层
 
 ```text
@@ -193,6 +245,7 @@ Harness / Runtime
    ├── Context / Memory
    ├── Tool / MCP Lifecycle
    ├── Recovery / Verification
+   └── Supplemental Harness State / Refinement Governance
    │
    ▼
 Plugin
@@ -210,6 +263,8 @@ Skill
 ```
 
 **Skill Distribution / Package Management 是横切层，不应被误建模为另一种 Skill。** 它负责 Source、Install、Scope、Version、Update、Integrity 和兼容性，并同时服务 Project、User 和 Team Harness。
+
+**Continual Harness Refinement 也是横切治理能力，不是一个普通 Skill。** Skill 可以请求 refinement，但真正修改 Harness State 的动作必须由 Harness/Runtime 审核、记录并可回滚。
 
 ## AxisAgent 建议模型
 
@@ -299,6 +354,24 @@ Measure / Verify
 Upgrade / Disable / Remove
 ```
 
+### Harness Refinement Record
+
+如果未来 [[AxisAgent]] 支持自适应 Harness，建议每次变更至少记录：
+
+- `refinementId`
+- `targetScope`（session / project / user / team）
+- `targetKind`（prompt-note / memory / skill / subagent-spec）
+- `sourceRunIds[]`
+- `evidenceIds[]`
+- `beforeDigest / afterDigest`
+- `proposal`
+- `riskClass`
+- `validationResults[]`
+- `approvedBy / approvalMode`
+- `createdAt / appliedAt`
+- `rollbackSnapshotId`
+- `qualityBefore / qualityAfter`（有足够样本时）
+
 ## 安全原则
 
 1. Plugin 的权限来自 Manifest + Runtime Enforcement，不来自 Prompt 自律。
@@ -309,6 +382,8 @@ Upgrade / Disable / Remove
 6. 来自 Git/URL/私有仓库的 Skill 也属于供应链输入，应保留 Source、版本/提交、完整性与更新记录。
 7. Skill 声明的 workflow/check 不是安全边界；Runtime 仍必须独立执行权限和危险操作确认。
 8. Skill 的“效果”必须可回归，不能仅靠 README 或模型主观判断。
+9. Continual Harness 只能修改明确允许的 Supplemental State；Base Security / Permission / Verification Contract 必须 immutable。
+10. Worker / Kernel / Sidecar 的进程隔离不等于安全沙箱；执行不可信代码需要独立 Sandbox / OS Capability Boundary。
 
 ## 与 Axis Knowledge Vault 的关系
 
@@ -333,6 +408,7 @@ Memory 与 Knowledge 的更细分边界见 [[Agent Memory and Knowledge Lifecycl
 - Plugin 不与 .NET Assembly 画等号，优先 Manifest-driven。
 - 支持声明式 Skill/MCP/Agent/Hook/Asset 组合。
 - Runtime 统一执行权限、隔离、生命周期和恢复。
+- 若引入 Continual Harness，只允许 Evidence-backed Supplemental Delta，并提供 Scope、Review、Snapshot、Rollback 与 Quality Regression。
 - 等插件机制真正进入产品实现时，再根据真实需求决定是否允许托管 .NET Plugin Assembly。
 
-关联：[[Agent]] · [[Skills]] · [[MCP]] · [[Context Engineering]] · [[Memory]] · [[WinUI]] · [[GitHub Trending — 2026-09-11]] · [[GitHub Trending — 2026-09-12]]
+关联：[[Agent]] · [[Skills]] · [[MCP]] · [[Context Engineering]] · [[Memory]] · [[WinUI]] · [[GitHub Trending — 2026-09-11]] · [[GitHub Trending — 2026-09-12]] · [[GitHub Trending — 2026-09-16]]
