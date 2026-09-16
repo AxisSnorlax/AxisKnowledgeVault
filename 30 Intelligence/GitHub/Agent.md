@@ -54,6 +54,9 @@ Agent 开源生态正在从“模型 + Prompt + Tool”转向更完整的工程�
 - `alibaba/open-code-review` — Deterministic Engineering × Agent；关键步骤由确定性工程保证，Agent 专注动态判断与检索。
 - `github/gh-aw` — Agentic Workflows；持续强化 Run/MCP 可观测性、Safe Output、Threat Detection 与 Credential Blast Radius。
 - `Panniantong/Agent-Reach` — Internet Capability Layer；按真实 Health Probe 在多个 Backend Adapter 之间选择与回退。
+- `PrimeIntellect-ai/prime-agent` — RLM + Continual Harness；保持不可变 Base System Prompt，并通过小型、证据驱动 Delta 更新补充 Prompt/Memory/Skill/Subagent State，支持 Snapshot / Rollback。
+- `semantica-agi/semantica` — Context Graph / Decision Intelligence / Provenance；把 Fact、Decision、Conflict、Temporal Snapshot 与确定性推理组织为可审计上下文层。
+- `vitali87/code-graph-rag` — Coding Agent Structural Intelligence；Tree-sitter + AST + Code Graph + Dataflow + MCP，而不是只依赖 Embedding。
 
 ## 2026-09-10 变化
 
@@ -122,6 +125,21 @@ Knowledge 方向也得到进一步确认：`Tencent/WeKnora` 把 Auto-Wiki 与 r
 
 参见：[[GitHub Trending — 2026-09-15]] · [[Deterministic Agent Runtime]] · [[Agent Skill Supply Chain]]
 
+## 2026-09-16 变化
+
+今天新增四个有长期价值的信号：
+
+1. **Static Harness → Continual Harness**：`PrimeIntellect-ai/prime-agent` 今日约 +2,655/day。其 Continual Harness 允许补充 Prompt、Memory、Skill 和 Subagent Spec 作为 Durable State，通过小型、证据驱动的 refinement 更新；Base System Prompt 保持 immutable，并支持 snapshot / rollback。长期模型应采用 **Immutable Base Contract + Mutable Supplemental Harness State + Evidence-backed Delta**，而不是让 Agent 自由重写自己的系统规则。
+2. **RAG / Wiki → Accountable Context Graph**：`semantica-agi/semantica` 今日约 +967/day。Context Graph 将 Fact、Decision、Provenance、Conflict、Deterministic Reasoning 与 Point-in-time Snapshot 组织到同一可追溯结构中。对 [[Axis Knowledge Vault]]，值得增加 source revision、decision linkage、conflict、supersedes 与 temporal validity；Graph 应作为可重建派生层，而不是替换 Markdown 真源。
+3. **Embedding-only Code Context → Structural Code Intelligence**：`vitali87/code-graph-rag` 今日约 +682/day。Tree-sitter / AST / Code Graph / Dataflow / deterministic graph query 与 MCP 的组合说明 Coding Agent 的 Code Context 应逐步分层为 Exact/FTS → Symbol/AST → Reference/Call Graph → Dataflow → Semantic Retrieval，并以 Structural Patch + Diff + Verification 收口写入。
+4. **Professional Tool Surface → Deterministic Structured Contract**：C# Trending 的 `iOfficeAI/OfficeCLI` 今日约 +276/day。Stable Path、Structured JSON、Atomic Batch / Rollback、Validation、Render/Observation 与 MCP 共同验证 [[Professional Software Agent Surface]] 应强调“稳定对象身份 + 事务 + 验证”，而不是直接让模型操作 UI。
+
+`dotnet/skills` 今日约 +53/day，也继续增强 Domain Skills / Professional Tooling 路线，但没有新增架构层。
+
+Rust 的 `DioxusLabs/blitz`（约 +21/day）与 `servo/servo`（约 +27/day）对轻量 HTML/CSS Embedded UI 有研究价值，但尚不足以改变 [[AxisAgent]] 当前 Avalonia / WinUI / Web-Hybrid 应通过同机 Benchmark 决策的结论。
+
+参见：[[GitHub Trending — 2026-09-16]] · [[Agent Capability Packaging]] · [[Agent Memory and Knowledge Lifecycle]] · [[Professional Software Agent Surface]]
+
 ## 对 AxisAgent 的长期启示
 
 建议将以下能力提升为一级架构组件，而不是零散 Service：
@@ -130,14 +148,18 @@ Knowledge 方向也得到进一步确认：`Tencent/WeKnora` 把 Auto-Wiki 与 r
 - Skill Workflow / Verification Metadata
 - Skill Supply-chain Trust / Integrity / Scan / Audit / Rollback
 - Plugin Registry / Manifest / Compatibility
+- Immutable Base Contract / Mutable Supplemental Harness State
+- Harness Delta Evidence / Verification / Snapshot / Rollback
 - Context Engine
 - Session / Handoff Memory
 - Promoted Knowledge Boundary
+- Context / Decision Provenance / Conflict / Temporal Validity
 - Tool Registry
 - MCP Runtime
 - Provider Routing Policy
 - Capability Adapter Routing / Health Probe / Fallback
 - Browser/Computer Runtime
+- Structural Code Intelligence（Symbol / AST / Graph / Dataflow）
 - Approval & Permission
 - Checkpoint / Recovery
 - Durable Run Record / Evidence Lineage
