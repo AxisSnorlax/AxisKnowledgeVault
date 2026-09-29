@@ -89,3 +89,18 @@ GitHub Trending 的 AI 热度主要集中在 Python 和 TypeScript，但 C#/.NET
 参见：[[GitHub Trending — 2026-09-16]] · [[Professional Software Agent Surface]] · [[Agent]]
 
 关联：[[WinUI]] · [[Avalonia]] · [[Agent]] · [[Local-AI]]
+
+
+## 2026-09-29 变化
+
+今天 .NET/C# 的高价值信号集中在 **Windows Agent Runtime、桌面自动化和本地 AI Host**：
+
+- `sbroenne/mcp-windows`：C# Windows UI Automation + MCP，强化 UIA-first Computer Use。
+- `RedWoodOG/Hermes-Desktop`：.NET 10 + WinUI 3 + SQLite FTS5 + MCP + Skills + Provider switching，适合作为 Windows-native Agent Desktop 工程参考样本。
+- `ramseur/sovrant`：Runtime 与 Desktop/Web/CLI Surface 分离，并将 Provider、Tool、Skill、Memory、Permission 单独建模。
+- `Retro-Downfall/RetroDownfall.Arcanum`：.NET 10 + NativeAOT + Microsoft.Extensions.AI + SQLCipher + MCP，体现 long-lived local AI host + thin clients + OpenAI-compatible façade 的路线。
+- Microsoft Foundry Local 已形成可直接从 C#/.NET 调用的 Windows 本地推理路线，值得纳入 [[AxisAIManager]] 的真实 Benchmark 候选。
+
+长期判断进一步收敛：.NET 的差异化价值仍然是 **Windows Native + Professional/Industrial Software + Deterministic Tool Surface + Local AI + Agent Runtime**，而不是追求通用 Agent Framework 数量。
+
+参见：[[GitHub Trending — 2026-09-29]] · [[Agent]] · [[Local-AI]]
