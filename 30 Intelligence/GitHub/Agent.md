@@ -170,3 +170,16 @@ Rust 的 `DioxusLabs/blitz`（约 +21/day）与 `servo/servo`（约 +27/day）�
 - Skill Quality Metrics（activation / success / elapsed / token / regression）
 
 关联：[[AxisAgent]] · [[Deterministic Agent Runtime]]
+
+
+## 2026-09-29 变化
+
+今天新增三个值得长期保留的 Windows/.NET Agent 工程信号：
+
+1. **Computer Use → UIA-first**：`sbroenne/mcp-windows` 进一步验证 Windows 桌面自动化应优先依赖 UI Automation / Accessibility Tree 的语义定位，再以截图/视觉和 Raw Input 作为回退。长期建议采用 `UIA → Vision → Raw Input` 分层，而不是以坐标驱动为主。
+2. **Permission → Runtime Policy Contract**：Windows MCP 项目开始把工具权限从简单 Allow/Deny 扩展到 target、process/window scope、filesystem/network scope、device posture 与 audit evidence。Tool Registry 应把 Permission Metadata 作为一级合同。
+3. **Agent Desktop → Runtime + Surfaces**：`Hermes-Desktop`、`sovrant` 等 .NET 项目继续证明桌面端应是 Agent Runtime 的一个 Surface；Provider、Tool/MCP、Skill、Memory、Permission、Run/Audit 不应耦合进 UI 层。
+
+UI 框架资格也应新增“Agent 可操作性”维度：Visual Tree 可检查性、UI Automation 质量、Headless/E2E、程序化布局/状态读取、修改后的自动验证。
+
+参见：[[GitHub Trending — 2026-09-29]] · [[DotNet]] · [[Avalonia]] · [[WinUI]]
