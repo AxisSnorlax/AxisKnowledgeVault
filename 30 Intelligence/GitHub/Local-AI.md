@@ -218,3 +218,31 @@ Health / Route / Local Endpoint
 参见：[[GitHub Trending — 2026-09-11]] · [[GitHub Trending — 2026-09-12]] · [[GitHub Trending — 2026-09-14]] · [[GitHub Trending — 2026-09-15]]
 
 关联：[[Agent]] · [[DotNet]] · [[AxisAgent]] · [[AxisAIManager]]
+
+
+## 2026-09-29 变化
+
+今天新增两个 Windows/.NET Local-AI 研究候选：
+
+### Microsoft Foundry Local
+
+Microsoft 的 Windows AI 文档已经形成 C#/.NET 本地模型调用路径，并可用于 WinUI 3、WPF 或其他 .NET host。对 [[AxisAIManager]]，应将其加入与 llama.cpp / Ollama / ONNX Runtime 的同机 Benchmark，而不是按文档或品牌判断优劣。
+
+建议统一比较：
+
+- Cold Start；
+- TTFT；
+- tokens/s；
+- VRAM / RAM；
+- 模型下载与缓存；
+- GPU / NPU 适配；
+- API 稳定性；
+- 部署与 NativeAOT 兼容性。
+
+### RetroDownfall.Arcanum
+
+`Retro-Downfall/RetroDownfall.Arcanum` 使用 .NET 10、NativeAOT、Microsoft.Extensions.AI、SQLCipher、Avalonia 与 MCP，采用 long-lived host + thin client，并提供 OpenAI-compatible façade 与加密本地状态。
+
+值得借鉴的是 Host/Runtime 与 UI 解耦、统一 Provider façade、加密状态和 NativeAOT 发布模式；当前仍是 beta，应保持 Research Candidate 身份。
+
+参见：[[GitHub Trending — 2026-09-29]] · [[DotNet]] · [[Agent]]
