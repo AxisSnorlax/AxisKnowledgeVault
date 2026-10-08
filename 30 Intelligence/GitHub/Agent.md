@@ -183,3 +183,17 @@ Rust 的 `DioxusLabs/blitz`（约 +21/day）与 `servo/servo`（约 +27/day）�
 UI 框架资格也应新增“Agent 可操作性”维度：Visual Tree 可检查性、UI Automation 质量、Headless/E2E、程序化布局/状态读取、修改后的自动验证。
 
 参见：[[GitHub Trending — 2026-09-29]] · [[DotNet]] · [[Avalonia]] · [[WinUI]]
+
+
+## 2026-10-08 变化
+
+今天新增一个达到长期架构级价值的信号：**Verification Plane 应从 Execution / Permission 中独立出来**。
+
+- `cloudflare/security-audit-skill` 将发现、反证验证、结构化报告和最终核验拆成不同阶段；发现问题的 Agent 不负责给自己的结论盖章。
+- 这进一步支持：Permission/Sandbox 只回答“能不能做”，Verification 必须回答“是否真的正确完成”。
+- 独立 Reviewer 负责寻找反例，但最终 PASS 仍必须绑定 Build/Test/Static Analysis/Runtime Smoke/UIA/Hardware Gate 等确定性证据。
+- Verification Result 应作为一级 Run/Artifact Record，保存 producer、reviewer、source revision、evidence、counterexample、deterministic checks 和 final verdict。
+
+该长期结论已沉淀为 [[Agent Verification and Audit Plane]]，并与 [[Deterministic Agent Runtime]] 配套使用。
+
+参见：[[GitHub Trending — 2026-10-08]] · [[Agent Verification and Audit Plane]] · [[Deterministic Agent Runtime]]
