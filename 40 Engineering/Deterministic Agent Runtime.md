@@ -270,3 +270,25 @@ Deterministic Contract
 ```
 
 关联：[[Agent]] · [[AxisAgent]] · [[Agent Skill Supply Chain]] · [[Professional Software Agent Surface]] · [[GitHub Trending — 2026-09-15]]
+
+
+## 2026-10-08：Verification Plane
+
+近期连续信号进一步表明，Deterministic Runtime 与 Verification 应明确分层：
+
+- Runtime 决定 scope、permission、state transition、tool boundary 与允许发生的动作；
+- Verification 独立确认实际发生了什么、结果是否正确、证据是否充分；
+- Reviewer/Agent 的判断只能作为候选意见，不能覆盖确定性门禁结果；
+- 最终 PASS 必须绑定可重复 Evidence。
+
+正式模型见 [[Agent Verification and Audit Plane]]。
+
+推荐关系：
+
+Deterministic Runtime → controls what may happen
+
+Verification Plane → proves what happened and whether it is correct
+
+二者共同组成比 Prompt Guardrail 更可靠的 Agent 工程边界。
+
+参见：[[GitHub Trending — 2026-10-08]] · [[Agent Verification and Audit Plane]]
