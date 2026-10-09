@@ -104,3 +104,16 @@ GitHub Trending 的 AI 热度主要集中在 Python 和 TypeScript，但 C#/.NET
 长期判断进一步收敛：.NET 的差异化价值仍然是 **Windows Native + Professional/Industrial Software + Deterministic Tool Surface + Local AI + Agent Runtime**，而不是追求通用 Agent Framework 数量。
 
 参见：[[GitHub Trending — 2026-09-29]] · [[Agent]] · [[Local-AI]]
+
+## 2026-10-09 变化
+
+今天 .NET/C# 最重要的新信号来自 Microsoft Execution Containers（MXC）：
+
+- Microsoft 已提供 Windows 原生执行隔离与正式 .NET SDK；
+- 对 [[AxisAgent]] 来说，Sandbox 不再只能作为自建权限层或外部 WSL2 实验方案研究；
+- 推荐把 MXC 作为 Windows-native Execution Sandbox Adapter 的 P0 资格候选，并与现有 Permission / Approval / Audit / Verification 合同解耦；
+- 资格测试必须覆盖目标 OS Build、补丁门槛、文件/网络/UI 拒绝行为、异常回收、并发、取消、x64/ARM64 与 NativeAOT 兼容性。
+
+这进一步强化 .NET 的差异化方向：**Windows Native Runtime + Deterministic Agent Boundary + Professional Software Surface**。
+
+参见：[[GitHub Trending — 2026-10-09]] · [[Agent Capability Policy Enforcement]] · [[Agent]]
