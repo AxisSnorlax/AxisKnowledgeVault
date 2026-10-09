@@ -197,3 +197,15 @@ UI 框架资格也应新增“Agent 可操作性”维度：Visual Tree 可检�
 该长期结论已沉淀为 [[Agent Verification and Audit Plane]]，并与 [[Deterministic Agent Runtime]] 配套使用。
 
 参见：[[GitHub Trending — 2026-10-08]] · [[Agent Verification and Audit Plane]] · [[Deterministic Agent Runtime]]
+
+## 2026-10-09 变化
+
+今天新增一个平台级信号：**Windows 原生 Agent Execution Sandbox 已出现正式、可由 .NET 直接调用的候选路径。**
+
+- Microsoft 于 2026-10-07 发布 Microsoft Execution Containers（MXC）GA，并提供 .NET SDK。
+- 这改变了此前 Windows 原生 Agent 隔离主要依赖自建 Runtime 或 WSL2/实验路径的判断。
+- [[AxisAgent]] 应把 Permission / Approval 与 Execution Sandbox Adapter 分离：前者决定允许什么，后者在 OS Runtime 层真正限制文件、网络、UI 与进程能力。
+- 仍必须先做目标 Windows Build / patch / backend capability 检查，并验证 fail-closed；不能因为 SDK 可调用就宣布隔离资格通过。
+- openai/codex-security 与前一日 Cloudflare 安全审计 Skill 继续支持 [[Agent Verification and Audit Plane]]：安全扫描必须保留 scope、coverage、evidence、source revision，且 no findings 不能等价于 PASS。
+
+参见：[[GitHub Trending — 2026-10-09]] · [[Agent Capability Policy Enforcement]] · [[Agent Verification and Audit Plane]]
