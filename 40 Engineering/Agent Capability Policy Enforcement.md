@@ -84,3 +84,32 @@ OpenShell 当前 Windows 路线以 WSL2 为实验路径，因此它更适合作�
 AxisAgent 应优先在自身 Windows Runtime / Tool Host 中实现等价的可执行 Scope、Approval、Evidence 与 Credential Boundary。
 
 关联：[[Agent]] · [[AxisAgent]] · [[Deterministic Agent Runtime]] · [[Agent Skill Supply Chain]] · [[GitHub Trending — 2026-09-30]]
+
+## 2026-10-09：Windows-native Execution Sandbox 候选
+
+2026-10-07 Microsoft Execution Containers（MXC）GA，并提供正式 .NET SDK。这个信号更新了本页此前“Windows 原生 Runtime 主要需要 AxisAgent 自行实现”的判断。
+
+新的推荐分层：
+
+Capability / Approval Policy → Execution Sandbox Adapter → OS-native containment backend → Tool / Process execution → Evidence / Audit
+
+其中：
+
+- Capability / Approval 决定**允许什么**；
+- Sandbox Adapter 负责**在运行时真正限制什么**；
+- Verification Plane 负责**证明实际发生了什么以及结果是否正确**。
+
+### MXC 资格边界
+
+MXC 只能先作为候选，不直接视为已通过：
+
+- 目标 Windows Build / patch 必须真实探测；
+- backend capability 必须按机器检测；
+- 文件系统、网络、GUI/Clipboard 等拒绝策略必须在目标机实测；
+- backend 不可用或失败时必须验证 fail-closed，不允许静默扩大权限；
+- 需要覆盖 cancellation、timeout、crash cleanup、persistent lifecycle、并发与 x64/ARM64；
+- NativeAOT/自包含发布也必须单独验证。
+
+长期原则更新为：Agent Policy 不应自己承担 OS Sandbox 的全部职责；当平台已有可验证的原生隔离能力时，应通过 Adapter 接入，同时保留 AxisAgent 自身 Permission / Approval / Audit Contract。
+
+参见：[[GitHub Trending — 2026-10-09]] · [[DotNet]] · [[Agent Verification and Audit Plane]]
