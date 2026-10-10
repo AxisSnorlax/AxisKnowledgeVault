@@ -117,3 +117,18 @@ GitHub Trending 的 AI 热度主要集中在 Python 和 TypeScript，但 C#/.NET
 这进一步强化 .NET 的差异化方向：**Windows Native Runtime + Deterministic Agent Boundary + Professional Software Surface**。
 
 参见：[[GitHub Trending — 2026-10-09]] · [[Agent Capability Policy Enforcement]] · [[Agent]]
+
+## 2026-10-10 变化
+
+`snownico0722/PaperTodo` 提供一个新的真实 WPF 参考样本：.NET 10、原生多窗口、贴边胶囊、Markdown、本地数据、插件目录，以及实验性的 MCP / PowerShell 能力。
+
+对 [[AxisAgent]] 的价值主要在交互模型，而不是框架排名：
+
+- Main Workspace + Mini Surface + Background Service 可以共存；
+- 多显示器 DPI、焦点抢占、悬浮层状态恢复值得单独测试；
+- MCP / Script Surface 必须与 UI 权限解耦，并纳入 [[Agent Capability Policy Enforcement]]；
+- 作者的资源占用和流畅度声明需要同机 Benchmark，不能直接用于 WPF / WinUI / Avalonia 优劣判断。
+
+今天没有足以改变 WinUI 3、WPF、Avalonia 技术路线的框架级证据。
+
+参见：[[GitHub Trending — 2026-10-10]] · [[Desktop UI]] · [[Agent]]
