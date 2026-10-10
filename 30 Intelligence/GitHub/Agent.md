@@ -209,3 +209,14 @@ UI 框架资格也应新增“Agent 可操作性”维度：Visual Tree 可检�
 - openai/codex-security 与前一日 Cloudflare 安全审计 Skill 继续支持 [[Agent Verification and Audit Plane]]：安全扫描必须保留 scope、coverage、evidence、source revision，且 no findings 不能等价于 PASS。
 
 参见：[[GitHub Trending — 2026-10-09]] · [[Agent Capability Policy Enforcement]] · [[Agent Verification and Audit Plane]]
+
+## 2026-10-10 变化
+
+今天新增一个值得长期记录的产品化信号：**Plugin 正从能力包进一步演化为 Role/Workspace 级工作组合。**
+
+- `anthropics/knowledge-work-plugins` 将 Skills、Commands、MCP 与 Host-specific Manifest 按岗位工作流组合交付。
+- 对 [[AxisAgent]]，更合理的模型是 `RoleProfile / WorkspaceProfile → Plugin Set → Skills / Commands / MCP Adapters`。
+- Role/Workspace Profile 只能组合已安装能力，不能自动扩大 Filesystem / Network / Credential / Shell 权限。
+- 这属于既有 [[Agent Capability Packaging]] 的增强，不需要再造一套平行插件体系。
+
+参见：[[GitHub Trending — 2026-10-10]] · [[Agent Capability Packaging]] · [[Agent Skill Supply Chain]]
