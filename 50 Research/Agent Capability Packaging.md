@@ -412,3 +412,23 @@ Memory 与 Knowledge 的更细分边界见 [[Agent Memory and Knowledge Lifecycl
 - 等插件机制真正进入产品实现时，再根据真实需求决定是否允许托管 .NET Plugin Assembly。
 
 关联：[[Agent]] · [[Skills]] · [[MCP]] · [[Context Engineering]] · [[Memory]] · [[WinUI]] · [[GitHub Trending — 2026-09-11]] · [[GitHub Trending — 2026-09-12]] · [[GitHub Trending — 2026-09-16]]
+
+## 2026-10-10：Role-based Plugin Composition
+
+`anthropics/knowledge-work-plugins` 提供了新的产品化证据：Plugin 不只是单个 Skill/MCP 的安装单位，还可以作为岗位/工作区的组合工作包。
+
+推荐继续在既有 Plugin 模型上增加：
+
+RoleProfile / WorkspaceProfile → Plugin Set → Skills / Commands / MCP / Host Adapters
+
+约束：
+
+- Role Profile 只负责选择和固定能力组合，不直接授予 Runtime Permission；
+- Credential / Filesystem / Network / Shell Scope 仍由 [[Agent Capability Policy Enforcement]] 决定；
+- Host-specific Manifest 与跨 Host 的 Domain Contract 分离；
+- Profile 需要版本、来源、兼容性和回滚信息；
+- 团队上下文与可执行连接器权限必须独立审批。
+
+这仍属于工作假设，不应视为行业统一 Plugin 标准。
+
+参见：[[GitHub Trending — 2026-10-10]] · [[Agent]] · [[Agent Skill Supply Chain]]
