@@ -113,3 +113,20 @@ MXC 只能先作为候选，不直接视为已通过：
 长期原则更新为：Agent Policy 不应自己承担 OS Sandbox 的全部职责；当平台已有可验证的原生隔离能力时，应通过 Adapter 接入，同时保留 AxisAgent 自身 Permission / Approval / Audit Contract。
 
 参见：[[GitHub Trending — 2026-10-09]] · [[DotNet]] · [[Agent Verification and Audit Plane]]
+
+## 2026-10-12：Hook / Proxy Coverage 不是 Sandbox
+
+`hashgraph-online/hol-guard` 进一步强调：Agent Hook、MCP Proxy 或 Tool Allowlist 可以成为 Runtime Policy 的执行点，但它们的安全强度取决于实际覆盖范围。
+
+因此 AxisAgent 的 Policy Engine 应记录：
+
+- enforcement point；
+- covered harness / transport / tool kind；
+- uncovered paths / bypass risk；
+- approval mode；
+- sandbox backend；
+- audit receipt / evidence id。
+
+原则：**Hook / Proxy / Tool Filtering ≠ OS Sandbox。** 当某类 Tool 无可靠拦截点时，应 fail-closed 或降级为只读/人工批准，而不是默认放行。
+
+参见：[[GitHub Trending — 2026-10-12]] · [[Agent Skill Supply Chain]]
