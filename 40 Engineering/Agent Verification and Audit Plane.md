@@ -92,3 +92,16 @@ openai/codex-security 与 2026-10-08 的 Cloudflare security audit skill 形成�
 安全扫描无发现，只能说明在当前 scope、工具、模型与 coverage 下未发现问题。最终 PASS 仍需结合 Build/Test、静态分析、运行时验证、权限边界和必要的人工/独立检查。
 
 参见：[[GitHub Trending — 2026-10-09]] · [[Deterministic Agent Runtime]]
+
+## 2026-10-12：Verification Receipt 与语义真实性
+
+近期 Memory/Agent 项目开始强调 signed receipt、independent judging 和可重算 Artifact。对 Verification Plane 的补充原则是：
+
+- receipt 证明某次检查发生过、输入/输出未被篡改或某主体签署过；
+- deterministic check 证明某个明确 invariant 是否满足；
+- independent reviewer 降低单一执行者确认偏差；
+- **以上任何一项单独存在，都不能自动证明复杂语义结论正确。**
+
+高价值 PASS 应组合 Source Revision + Deterministic Check + Evidence Artifact + Coverage + Reviewer/Verifier，并保留 unresolved / conflict / needs-validation 状态。
+
+参见：[[GitHub Trending — 2026-10-12]] · [[Agent Memory and Knowledge Lifecycle]]
