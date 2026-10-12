@@ -220,3 +220,14 @@ UI 框架资格也应新增“Agent 可操作性”维度：Visual Tree 可检�
 - 这属于既有 [[Agent Capability Packaging]] 的增强，不需要再造一套平行插件体系。
 
 参见：[[GitHub Trending — 2026-10-10]] · [[Agent Capability Packaging]] · [[Agent Skill Supply Chain]]
+
+## 2026-10-12 变化
+
+今天新增两个持续验证信号：
+
+1. **Skill Supply Chain → Runtime Enforcement 连通**：`hashgraph-online/hol-guard` 将静态扫描、Hook/MCP Proxy、allow/block/approval、审计收据与 Inventory/ABOM 串联起来。长期模型应明确：安装前 Integrity/Scan 与运行时 Permission/Sandbox 是不同层，但二者需要共享身份、来源和审计上下文。
+2. **Memory Retrieval → Evidence-bearing Knowledge**：`chunxiaoxx/nautilus-compass` 强调预先注册判据、独立评判、验证收据和可重算 Artifact。对 [[Axis Knowledge Vault]]，长期知识晋升应记录 Source Revision、Evidence、Verifier、Conflict/Status；签名只能证明完整性或声明来源，不能自动证明语义正确。
+
+`CursorTouch/Windows-MCP` 的持续增长继续支持 Windows Computer Use 的 UIA-first 与远程 Surface 单独加固，但没有形成新的 UI 框架判断。
+
+参见：[[GitHub Trending — 2026-10-12]] · [[Agent Skill Supply Chain]] · [[Agent Capability Policy Enforcement]] · [[Agent Memory and Knowledge Lifecycle]] · [[Agent Verification and Audit Plane]]
