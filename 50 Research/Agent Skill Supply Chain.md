@@ -216,3 +216,21 @@ Plugin Supply Chain 是更高一级问题；Skill Supply Chain 可以先独立�
 - Skill Quality Metrics 与 Security Metrics 分开：安全不代表有效，有效也不代表安全。
 
 关联：[[Agent Capability Packaging]] · [[Skills]] · [[MCP]] · [[Agent]] · [[AxisAgent]] · [[GitHub Trending — 2026-09-14]] · [[GitHub Trending — 2026-09-15]]
+
+## 2026-10-12：Supply Chain 与 Runtime Enforcement 连通
+
+`hashgraph-online/hol-guard` 提供新的连续证据：Skill/Plugin 供应链治理不应在“扫描通过”后结束，而应把来源身份、静态扫描结果、运行时调用策略、Approval 与 Audit Receipt 串起来。
+
+推荐分层：
+
+Source / Publisher → Integrity / Static Scan → Install → Runtime Policy → Approval → Sandbox / Tool Execution → Audit Evidence
+
+长期边界保持不变：
+
+- Static Scan 只能发现一部分已知风险；
+- Hook / MCP Proxy 取决于 Harness 覆盖能力，不等于 OS Sandbox；
+- Skill 声明的 Tool / Workflow 不能扩大 Runtime Permission；
+- 缺少拦截能力时应显式降级、限制高风险 Tool，并记录 coverage gap；
+- Supply-chain identity 应可贯穿到 Tool Call 和 Verification Evidence。
+
+参见：[[GitHub Trending — 2026-10-12]] · [[Agent Capability Policy Enforcement]] · [[Deterministic Agent Runtime]]
