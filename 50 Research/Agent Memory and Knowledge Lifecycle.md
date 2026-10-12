@@ -415,3 +415,21 @@ Axis 后续 Memory 架构建议采用：
 这一分层目前已经得到连续多类开源项目的独立验证信号，值得作为 [[AxisAgent]] 与 [[Axis Knowledge Vault]] 的长期架构原则继续验证。
 
 关联：[[Agent]] · [[Context Engineering]] · [[Memory]] · [[Agent Capability Packaging]] · [[GitHub Trending — 2026-09-11]] · [[GitHub Trending — 2026-09-12]] · [[GitHub Trending — 2026-09-16]]
+
+## 2026-10-12：Evidence-bearing Knowledge Promotion
+
+`chunxiaoxx/nautilus-compass` 提供新的研究信号：高价值 Memory/Knowledge 不应只有检索得分，还应能携带判据、验证结果、负面结果、可重算 Artifact 与来源收据。
+
+对 Axis Knowledge Vault，Promote 到长期知识时建议逐步补充：
+
+- source revision / hash；
+- evidence artifact；
+- verifier / verification method；
+- criteria / expected invariant；
+- negative result / contradiction；
+- conflict / supersede status；
+- recompute / refresh reference。
+
+内容哈希或签名只能证明内容完整性、签名者身份或某个声明被固定，不能单独证明语义事实为真。长期事实仍以项目仓库、正式报告、可复现实验和明确人工决策为优先真源。
+
+参见：[[GitHub Trending — 2026-10-12]] · [[Agent Verification and Audit Plane]]
