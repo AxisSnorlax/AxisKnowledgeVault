@@ -432,3 +432,12 @@ RoleProfile / WorkspaceProfile → Plugin Set → Skills / Commands / MCP / Host
 这仍属于工作假设，不应视为行业统一 Plugin 标准。
 
 参见：[[GitHub Trending — 2026-10-10]] · [[Agent]] · [[Agent Skill Supply Chain]]
+
+## 2026-10-13：Cursor Plugin Manifest 佐证
+
+Cursor 官方 `cursor/plugins` 仓库公开 marketplace manifest、per-plugin manifest、Skills、Rules 与 MCP 配置。结合 2026-10-10 已记录的 Anthropic 插件分发，进一步支持既有“中立 Capability Contract + Host-specific Manifest Adapter”的工作假设。
+
+平台插件格式并非统一标准；仓库分发声明不等于运行时授权。[[AxisAgent]] 应在独立 Permission/Approval 边界下解释这些声明。
+
+来源：https://github.com/cursor/plugins
+关联：[[GitHub Trending — 2026-10-13]] · [[Agent]]
