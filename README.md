@@ -48,6 +48,8 @@ Axis 系列项目、技术决策、工程规范、开源趋势与研究资料的
 4. 项目仓库与正式报告仍是事实第一真源；Vault 负责聚合、解释、关联和长期决策。
 5. 自动化不得覆盖人工内容，不重复制造相同知识节点。
 
+GitHub Trend Watch 使用本地优先流程：先更新 Windows 本机 Vault，经检查后以明确文件清单 `git add/commit/push` 同步远端。执行说明见 [本地优先同步](80%20Templates/GitHub%20Trend%20Watch%20Local%20First.md)，自动任务配置见 [自动化提示词](80%20Templates/GitHub%20Trend%20Watch%20Automation%20Prompt.md)。Public/Private 不作为写入阻断条件。
+
 ## 本地使用
 
 将本仓库 clone 到本机后，可直接用 Obsidian 的 **Open folder as vault** 打开仓库根目录。
