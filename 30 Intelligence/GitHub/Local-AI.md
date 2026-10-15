@@ -246,3 +246,19 @@ Microsoft 的 Windows AI 文档已经形成 C#/.NET 本地模型调用路径，�
 值得借鉴的是 Host/Runtime 与 UI 解耦、统一 Provider façade、加密状态和 NativeAOT 发布模式；当前仍是 beta，应保持 Research Candidate 身份。
 
 参见：[[GitHub Trending — 2026-09-29]] · [[DotNet]] · [[Agent]]
+
+## 2026-10-15 变化
+
+`ARahim3/DigUp` 提供一个值得研究的 Local-first 多模态桌面检索样本：文本、图片、音频、视频进入统一检索空间，结果可定位到 PDF 页、视频时间点、音频片段与代码位置。
+
+对 [[AxisAgent]] / [[AxisKnowledgeVault]] 的长期借鉴：
+
+- 检索结果应携带稳定源位置，如 `FileId + Page/TimeRange/CodeSpan`；
+- 索引应记录 `SourceDigest` 与 `ModelVersion`，便于重建和比较；
+- Exact/FTS 与 Vector/Graph 应协作，而不是让向量索引成为事实真源；
+- 代码、密钥、构建产物和临时文件需要独立权限/过滤策略；
+- 结果必须保留 Citation / Open-at-source 能力。
+
+边界：DigUp 当前主要面向 Apple Silicon macOS，因此只能作为架构研究样本，不能直接视为 Windows/WinUI 的可用实现。
+
+参见：[[GitHub Trending — 2026-10-15]] · [[Agent Memory and Knowledge Lifecycle]]
