@@ -259,6 +259,8 @@ Microsoft 的 Windows AI 文档已经形成 C#/.NET 本地模型调用路径，�
 - 代码、密钥、构建产物和临时文件需要独立权限/过滤策略；
 - 结果必须保留 Citation / Open-at-source 能力。
 
-边界：DigUp 当前主要面向 Apple Silicon macOS，因此只能作为架构研究样本，不能直接视为 Windows/WinUI 的可用实现。
+平台复核（2026-10-15）：[官方 v0.7.0-beta.1 发布页](https://github.com/ARahim3/DigUp/releases/tag/v0.7.0-beta.1) 已提供 Windows 10/11 x64 与 Linux beta，因此应从 macOS 架构观察升级为 Windows 实机研究候选。原有稳定源位置、模型版本、混合检索与可重建索引判断继续保留。
+
+边界：它是应用级 beta，不是 WinUI/.NET SDK；Windows/Linux 壳使用 Tauri。官方支持声明不等于本机性能或兼容性验收，本轮未安装或实测，仍需对目标硬件上的检索质量、资源占用和 Open-at-source 能力做验证。
 
 参见：[[GitHub Trending — 2026-10-15]] · [[Agent Memory and Knowledge Lifecycle]]
