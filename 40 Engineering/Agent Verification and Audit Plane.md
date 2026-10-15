@@ -105,3 +105,26 @@ openai/codex-security 与 2026-10-08 的 Cloudflare security audit skill 形成�
 高价值 PASS 应组合 Source Revision + Deterministic Check + Evidence Artifact + Coverage + Reviewer/Verifier，并保留 unresolved / conflict / needs-validation 状态。
 
 参见：[[GitHub Trending — 2026-10-12]] · [[Agent Memory and Knowledge Lifecycle]]
+
+## 2026-10-15：Judge Independence 与 Evidence Sufficiency
+
+`ifixai-ai/iFixAi` 进一步确认：Verification 需要区分被测对象、Judge 与最终确定性门禁。
+
+建议 Verification Result 增加：
+
+- `fixtureRevision`
+- `judgeProvider`
+- `judgeModel`
+- `judgeIndependence`
+- `coverage` / `coverageGaps`
+- `insufficientEvidence`
+- `evidenceArtifacts[]`
+
+关键原则：
+
+- Self-judged 结果与 Independent Judge 结果必须显式区分；
+- `insufficient_evidence` 应作为正式状态，不应强迫输出 PASS/FAIL；
+- 模型评分只能作为证据的一部分，不能覆盖 Build/Test/E2E、静态分析、Runtime Sandbox、UIA/Hardware Gate 等确定性结果；
+- Fixture、Source Revision、Judge 配置与原始 Evidence 必须可追溯，否则不同运行之间无法比较。
+
+参见：[[GitHub Trending — 2026-10-15]] · [[Deterministic Agent Runtime]]
