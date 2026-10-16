@@ -2,7 +2,7 @@
 type: research
 status: working-thesis
 date: 2026-09-10
-updated: 2026-09-16
+updated: 2026-10-16
 topic: agent-capability-packaging
 tags:
   - agent
@@ -441,3 +441,20 @@ Cursor 官方 `cursor/plugins` 仓库公开 marketplace manifest、per-plugin ma
 
 来源：https://github.com/cursor/plugins
 关联：[[GitHub Trending — 2026-10-13]] · [[Agent]]
+
+<!-- trend-watch:2026-10-16-plugin-identity:begin -->
+## 2026-10-16：稳定安装身份与改名迁移
+
+[Anthropic 官方插件目录](https://github.com/anthropics/claude-plugins-official) 的稳定 slug、显示名与显式改名映射，为既有 Plugin Registry 模型补充了身份迁移样本。它是特定宿主的规则，不是跨平台统一标准。
+
+Axis 的设计建议：
+
+- 安装记录以稳定 `pluginId` 关联来源与版本，`displayName` 只负责显示。
+- 改名应是独立、可审计的迁移事件，保留 `oldId / newId / sourceRevision / migratedAt / rollbackReference`，检测重复映射与身份碰撞。
+- 名称变化不自动改变 Publisher 信任、Workspace Scope 或 Runtime Permission；权限变化按既有策略重新处理。
+- Skill bundle 的条目身份和上游来源映射继续保留，避免展示层改名造成重复安装或失去更新来源。
+
+这些是待验证的产品合同建议，本轮没有修改插件加载器或现有安装。沿用 [[Agent Skill Supply Chain]] 的来源、完整性与审计边界。
+
+参见：[[30 Intelligence/GitHub/Daily/2026-10-16|GitHub Trending — 2026-10-16]] · [[Agent]] · [[AxisAgent]]
+<!-- trend-watch:2026-10-16-plugin-identity:end -->

@@ -2,7 +2,7 @@
 type: research
 status: working-thesis
 date: 2026-09-11
-updated: 2026-09-16
+updated: 2026-10-16
 topic: agent-memory-knowledge-lifecycle
 tags:
   - agent
@@ -433,3 +433,23 @@ Axis 后续 Memory 架构建议采用：
 内容哈希或签名只能证明内容完整性、签名者身份或某个声明被固定，不能单独证明语义事实为真。长期事实仍以项目仓库、正式报告、可复现实验和明确人工决策为优先真源。
 
 参见：[[GitHub Trending — 2026-10-12]] · [[Agent Verification and Audit Plane]]
+
+<!-- trend-watch:2026-10-16-retrieval-evidence:begin -->
+## 2026-10-16：检索缓存与证据保存
+
+[context-mode](https://github.com/mksglu/context-mode) 与 [xerj](https://github.com/xerj-org/xerj) 为既有“原始真源 + 派生检索层”模型提供了实现样本。这里新增的是 Axis 设计推论，不将上游功能声明当作独立验收。
+
+建议明确三套生命周期：
+
+1. Working Context：只给当前推理选择足够的片段。
+2. Retrieval Cache：按来源变化和 TTL 更新、失效或重建。
+3. Evidence Artifact：保存支撑验收、决策与追溯所需的源材料，不能随缓存清理一起消失。
+
+建议检索回执区分 `sourceUri / sourceRevision / locator / observedAt / indexedAt / expiresAt / workspaceScope`，以及是否发生截断、命中所用索引版本。它们是候选字段，不宣称任何单一项目已实现全部合同。
+
+当来源不可重取时，重要结论必须关联独立保存的证据；无法确定新鲜度时返回需复核状态。性能比较应同时记录任务正确率、可复核性、Token 与延迟，不能只比较输出压缩比例。
+
+权限边界也不随检索协议消失：索引、源文件与 Memory namespace 的访问范围要分别检查；loopback 地址不能替代调用者鉴权。[XERJ 官方权限模型](https://github.com/xerj-org/xerj/blob/main/docs/SECURITY_MODEL.md) 提供了相关边界样本。
+
+参见：[[30 Intelligence/GitHub/Daily/2026-10-16|GitHub Trending — 2026-10-16]] · [[Agent Verification and Audit Plane]] · [[AxisAgent]]
+<!-- trend-watch:2026-10-16-retrieval-evidence:end -->

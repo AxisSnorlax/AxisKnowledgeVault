@@ -231,3 +231,16 @@ UI 框架资格也应新增“Agent 可操作性”维度：Visual Tree 可检�
 `CursorTouch/Windows-MCP` 的持续增长继续支持 Windows Computer Use 的 UIA-first 与远程 Surface 单独加固，但没有形成新的 UI 框架判断。
 
 参见：[[GitHub Trending — 2026-10-12]] · [[Agent Skill Supply Chain]] · [[Agent Capability Policy Enforcement]] · [[Agent Memory and Knowledge Lifecycle]] · [[Agent Verification and Audit Plane]]
+
+<!-- trend-watch:2026-10-16-retrieval-plugin-identity:begin -->
+## 2026-10-16：检索治理与插件身份
+
+本轮将两个具体增量并入既有模型：
+
+- Context Engine：把检索缓存的新鲜度与验收证据保存分开；命中片段携带来源、版本、范围和时间。详细工作假设见 [[Agent Memory and Knowledge Lifecycle]]。
+- Plugin Registry：将稳定安装标识与显示名称分开，显式记录改名映射、来源和迁移结果。详细工作假设见 [[Agent Capability Packaging]]。
+
+候选证据来自 [context-mode](https://github.com/mksglu/context-mode)、[xerj](https://github.com/xerj-org/xerj) 和 [Anthropic 官方插件目录](https://github.com/anthropics/claude-plugins-official)。本轮仅核对上游资料，未独立验证性能或更改产品架构。
+
+参见：[[30 Intelligence/GitHub/Daily/2026-10-16|GitHub Trending — 2026-10-16]] · [[AxisAgent]]
+<!-- trend-watch:2026-10-16-retrieval-plugin-identity:end -->
