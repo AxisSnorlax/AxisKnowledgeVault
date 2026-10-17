@@ -264,3 +264,15 @@ Microsoft 的 Windows AI 文档已经形成 C#/.NET 本地模型调用路径，�
 边界：它是应用级 beta，不是 WinUI/.NET SDK；Windows/Linux 壳使用 Tauri。官方支持声明不等于本机性能或兼容性验收，本轮未安装或实测，仍需对目标硬件上的检索质量、资源占用和 Open-at-source 能力做验证。
 
 参见：[[GitHub Trending — 2026-10-15]] · [[Agent Memory and Knowledge Lifecycle]]
+
+<!-- trend-watch:2026-10-17-native-control-plane:begin -->
+## 2026-10-17：Windows 原生控制面与启动合同
+
+[ggml-org/Llama-Windows](https://github.com/ggml-org/Llama-Windows) 提供 WinUI 管理独立推理进程的具体样本；本次同时复核了其已发布的 [v0.12.0](https://github.com/ggml-org/Llama-Windows/releases/tag/v0.12.0)，不将它写成今天的新发布。
+
+对 [[AxisAIManager]] 的新增设计建议：桌面应用版本、推理 Runtime 版本、模型文件身份和设备配置分别记录；UI 保存值与实际启动参数需要可核对。共享模型缓存不应令不同 Runtime 的生命周期、凭据和权限混在一起。
+
+这增强已有控制面模型，不代表项目已通过本机性能或安全验收。Magnitude 的调优方向沿用 9 月 30 日记录，不重复晋升。具体启动参数约束见 [[Agent Capability Policy Enforcement]]。
+
+参见：[[30 Intelligence/GitHub/Daily/2026-10-17|GitHub Trending — 2026-10-17]] · [[AxisAgent]]
+<!-- trend-watch:2026-10-17-native-control-plane:end -->

@@ -130,3 +130,16 @@ MXC 只能先作为候选，不直接视为已通过：
 原则：**Hook / Proxy / Tool Filtering ≠ OS Sandbox。** 当某类 Tool 无可靠拦截点时，应 fail-closed 或降级为只读/人工批准，而不是默认放行。
 
 参见：[[GitHub Trending — 2026-10-12]] · [[Agent Skill Supply Chain]]
+
+<!-- trend-watch:2026-10-17-launch-policy:begin -->
+## 2026-10-17：应用负责的参数与实际启动配置
+
+[Llama-Windows v0.12.0 发布说明](https://github.com/ggml-org/Llama-Windows/releases/tag/v0.12.0) 提供了一个具体案例：自定义启动参数可能改变应用已经决定的网络与凭据设置。这里提炼为 Axis 的设计建议，尚未进行独立实测。
+
+- 将用户可调性能选项与 Policy 管理的安全选项分开；后者不接受自由文本覆盖。
+- 配置保存与进程启动都检查最终有效配置，记录经过脱敏的执行证据。
+- 绑定地址失效、身份不匹配或更新完整性不可验证时，保留可诊断的拒绝/回退结果，不静默扩大权限。
+- 明确这些检查只覆盖启动与配置路径，不能替代 OS Sandbox 或运行中的资源权限验证。
+
+参见：[[30 Intelligence/GitHub/Daily/2026-10-17|GitHub Trending — 2026-10-17]] · [[30 Intelligence/GitHub/Local-AI|Local-AI 趋势索引]] · [[Agent Verification and Audit Plane]]
+<!-- trend-watch:2026-10-17-launch-policy:end -->
