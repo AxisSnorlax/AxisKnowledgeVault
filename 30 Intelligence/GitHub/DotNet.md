@@ -132,3 +132,19 @@ GitHub Trending 的 AI 热度主要集中在 Python 和 TypeScript，但 C#/.NET
 今天没有足以改变 WinUI 3、WPF、Avalonia 技术路线的框架级证据。
 
 参见：[[GitHub Trending — 2026-10-10]] · [[Desktop UI]] · [[Agent]]
+
+<!-- trend-watch:2026-10-18-project-api-grounding:begin -->
+## 2026-10-18：按项目引用核对 Windows API
+
+[Microsoft winapp CLI 的 find-api 文档](https://github.com/microsoft/winappCli/blob/main/docs/usage.md#find-api) 为 Agent 生成 C#/XAML 前查询真实 API 元数据提供了候选路径。文档来自 main，不直接视为用户已安装版本的能力。
+
+对 Axis 的设计建议：
+
+- 查询结果关联目标项目、已解析引用与索引范围，避免把机器级 SDK 或其他项目的缓存当作当前项目的编译依据。
+- 索引不完整时，未找到符号只能作为带限制的否定结果；成员存在与可赋值分别判断。
+- 保留包版本与元数据来源，编译/运行验证仍独立执行；有应用身份也不等于拥有任意运行时权限。
+
+这属于工具链研究候选，本轮未安装 CLI、修改项目或注册开发证书。
+
+参见：[[30 Intelligence/GitHub/Daily/2026-10-18|GitHub Trending — 2026-10-18]] · [[AxisAgent]] · [[Agent Verification and Audit Plane]]
+<!-- trend-watch:2026-10-18-project-api-grounding:end -->

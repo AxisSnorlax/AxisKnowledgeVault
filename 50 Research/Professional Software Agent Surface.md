@@ -2,7 +2,7 @@
 type: research
 status: active
 topic: professional-software-agent-surface
-updated: 2026-09-16
+updated: 2026-10-18
 tags:
   - agent
   - mcp
@@ -270,3 +270,20 @@ UI 页面不应成为 Agent API。Agent 调用应该进入 Domain/Application co
 该模式已经由多个不同领域项目连续验证，可作为 Axis 工业/工程软件的长期架构原则继续使用。2026-09-16 的 OfficeCLI 进一步把模式收敛到 **Stable Identity + Structured Contract + Atomic Mutation + Validation/Observation**。具体协议、权限粒度、事务模型和进程边界仍需按项目真实风险验证。
 
 关联：[[Agent]] · [[MCP]] · [[Skills]] · [[Desktop UI]] · [[AFSCADA]] · [[AxisProtocolStudio]] · [[AxisAgent]] · [[Deterministic Agent Runtime]] · [[GitHub Trending — 2026-09-13]] · [[GitHub Trending — 2026-09-16]]
+
+<!-- trend-watch:2026-10-18-uncertain-mutation:begin -->
+## 2026-10-18：现场来源与写入不确定状态
+
+[Konnect v0.13.0 发布说明](https://github.com/mixelpixx/Konnect/releases/tag/v0.13.0) 为已有读回与恢复模型补充具体样本：现场 IPC、已保存文件和 CLI 返回不是可互换的证据，操作可能已经产生副作用时应先检查现状。
+
+Axis 的设计建议：
+
+- Result 分别记录目标身份、读取来源和操作结果；至少区分确定未执行、确认已执行与结果不确定。
+- 请求超时或连接断开时，不默认归类为无副作用失败；重试前核对现场版本、已完成步骤和幂等条件。
+- 在线编辑器仍拥有文档时，不悄悄切到离线文件写入；能力不满足应明确拒绝或进入有范围的恢复流程。
+- 证据来源不能确认时保留不确定状态，不能只凭工具返回成功给出领域验收结论。
+
+以上是待验证的合同建议，不表示已在 Axis 产品中实现，也不把上游发布说明当作独立测试结果。
+
+参见：[[30 Intelligence/GitHub/Daily/2026-10-18|GitHub Trending — 2026-10-18]] · [[Agent Verification and Audit Plane]] · AFSCADA · AxisProtocolStudio
+<!-- trend-watch:2026-10-18-uncertain-mutation:end -->
