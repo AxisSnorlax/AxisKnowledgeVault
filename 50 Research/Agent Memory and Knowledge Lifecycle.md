@@ -2,7 +2,7 @@
 type: research
 status: working-thesis
 date: 2026-09-11
-updated: 2026-10-16
+updated: 2026-10-20
 topic: agent-memory-knowledge-lifecycle
 tags:
   - agent
@@ -453,3 +453,18 @@ Axis 后续 Memory 架构建议采用：
 
 参见：[[30 Intelligence/GitHub/Daily/2026-10-16|GitHub Trending — 2026-10-16]] · [[Agent Verification and Audit Plane]] · [[AxisAgent]]
 <!-- trend-watch:2026-10-16-retrieval-evidence:end -->
+
+<!-- trend-watch:2026-10-20-retrieval-availability:begin -->
+## 2026-10-20：原文回取条件与 Handoff 可访问范围
+
+[Headroom](https://github.com/headroomlabs-ai/headroom) 的可回取压缩设计，以及 [ai-memory](https://github.com/akitaonrails/ai-memory) 对本机历史与可携带 Handoff 的区分，补充了 10 月 16 日的缓存/证据分层。以下为 Axis 的工作假设，未独立实测。
+
+- 压缩产物关联 `sourceDigest / sourceRef / availableUntil / retrievalStatus` 等候选字段；TTL 内可回取不等于压缩内容本身语义无损。
+- 对需要完整证据的判断，验证实际回取是否成功。原文过期、权限变化或主机不可达时明确返回不可用，不把压缩视图当作完整事实。
+- Handoff 标明材料属于可携带内容，还是必须在原主机与工作区读取；跨机恢复不能假定原机的临时文件仍然可见。
+- 分别测量节省量、回取成功率和任务正确率；长期验收证据仍采用独立于短期缓存的保存策略。
+
+本轮没有安装压缩代理、采集用户会话或改变任何现有客户端配置。
+
+参见：[[30 Intelligence/GitHub/Daily/2026-10-20|GitHub Trending — 2026-10-20]] · [[AxisAgent]] · [[Agent Verification and Audit Plane]]
+<!-- trend-watch:2026-10-20-retrieval-availability:end -->
