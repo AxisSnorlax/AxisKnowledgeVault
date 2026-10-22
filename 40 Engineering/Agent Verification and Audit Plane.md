@@ -128,3 +128,16 @@ openai/codex-security 与 2026-10-08 的 Cloudflare security audit skill 形成�
 - Fixture、Source Revision、Judge 配置与原始 Evidence 必须可追溯，否则不同运行之间无法比较。
 
 参见：[[GitHub Trending — 2026-10-15]] · [[Deterministic Agent Runtime]]
+
+<!-- trend-watch:2026-10-22-graph-evidence:begin -->
+## 2026-10-22：图关系来源与提取覆盖
+
+[Graphify README](https://github.com/Graphify-Labs/graphify) 对显式提取与解析推断关系的区分，以及 [v0.9.93](https://github.com/Graphify-Labs/graphify/releases/tag/v0.9.93) 的提取器/缓存修复，为证据合同提供新样本。以下是 Axis 工作假设，本轮未运行该工具。
+
+- 关系证据保留来源位置、源码版本、提取器/schema 版本及产生方式；静态解析和实际运行观测分别标记。
+- `EXTRACTED` 不代表完整语义覆盖，`INFERRED` 不必然代表模型猜测；必须记录实际生成机制及未覆盖范围。
+- 提取失败、文件只读了一部分、引用无法解析时保留缺口，不能把“未找到关系”直接解释成“关系不存在”。
+- 验收仍回到源码、构建或运行证据，图是可重建的查询与追溯层。
+
+参见：[[30 Intelligence/GitHub/Daily/2026-10-22|GitHub Trending — 2026-10-22]] · [[Agent Memory and Knowledge Lifecycle]] · [[AxisAgent]]
+<!-- trend-watch:2026-10-22-graph-evidence:end -->
