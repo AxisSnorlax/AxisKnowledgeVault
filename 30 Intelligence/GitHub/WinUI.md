@@ -74,3 +74,15 @@ tags:
 参见：[[GitHub Trending — 2026-09-11]]
 
 关联：[[Agent]] · [[DotNet]] · [[AxisAgent]]
+
+<!-- trend-watch:2026-10-24-recovery-snapshots:begin -->
+## 2026-10-24：恢复决策期间保护已有快照
+
+[DeskBox v1.5.9](https://github.com/Tianyu199509/DeskBox/releases/tag/v1.5.9)（10 月 23 日）记录了配置缺失时的恢复选择，并在决定前暂停定时快照；更新器另有失败退避与计费网络处理。这为 WinUI 桌面应用的数据生命周期提供了具体样本。
+
+对 [[AxisAgent]] 的设计推论：启动检测、快照资格校验、用户恢复选择及后台保存需要共享明确状态；不能在恢复决定前让默认状态覆盖仅存证据。可把“配置缺失但备份存在”列为恢复验收场景，分别核对恢复和重新开始后的数据归属。
+
+这是发布说明支持的研究候选。本轮未安装或独立复验项目的测试、签名与 Native AOT 发布结果，不能据此宣称 WinUI 性能或部署资格通过。
+
+参见：[[30 Intelligence/GitHub/Daily/2026-10-24|GitHub Trending — 2026-10-24]]
+<!-- trend-watch:2026-10-24-recovery-snapshots:end -->

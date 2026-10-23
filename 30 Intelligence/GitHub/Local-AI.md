@@ -276,3 +276,15 @@ Microsoft 的 Windows AI 文档已经形成 C#/.NET 本地模型调用路径，�
 
 参见：[[30 Intelligence/GitHub/Daily/2026-10-17|GitHub Trending — 2026-10-17]] · [[AxisAgent]]
 <!-- trend-watch:2026-10-17-native-control-plane:end -->
+
+<!-- trend-watch:2026-10-24-audio-contract:begin -->
+## 2026-10-24：语音生成与播放的格式合同
+
+[VoxCPM 2.0.3](https://github.com/OpenBMB/VoxCPM/releases/tag/2.0.3) 的设备选择和流式解码记录，与 [STranslate v2.0.10](https://github.com/STranslate/STranslate/releases/tag/v2.0.10) 的显式音频格式、PCM 描述及取消参数，提供了生成端和播放端两个样本。它们都是本次复核的既有版本，并非今日发布。
+
+对 [[AxisAIManager]] 的增量设计假设：在既有 Engine Registry 上补充音频编码、采样率、声道、PCM 样本表示，以及流结束、取消和错误状态；设备/模型/引擎身份与这些字段一起记录。验收分别观察首个音频块延迟、连续播放、取消后是否残留旧音频，以及完整生成速度。
+
+本轮未在 Windows 实测 VoxCPM；项目自报 RTF 不写成独立测量。此处扩展研究合同，不改变既有推理主路径。
+
+参见：[[30 Intelligence/GitHub/Daily/2026-10-24|GitHub Trending — 2026-10-24]] · [[AxisAgent]]
+<!-- trend-watch:2026-10-24-audio-contract:end -->
