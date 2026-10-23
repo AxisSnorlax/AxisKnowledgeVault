@@ -143,3 +143,16 @@ MXC 只能先作为候选，不直接视为已通过：
 
 参见：[[30 Intelligence/GitHub/Daily/2026-10-17|GitHub Trending — 2026-10-17]] · [[30 Intelligence/GitHub/Local-AI|Local-AI 趋势索引]] · [[Agent Verification and Audit Plane]]
 <!-- trend-watch:2026-10-17-launch-policy:end -->
+
+<!-- trend-watch:2026-10-23-orchestration-metadata:begin -->
+## 2026-10-23：编排元数据的权限边界
+
+[OpenShell v0.1.5](https://github.com/NVIDIA/OpenShell/releases/tag/v0.1.5) 对 Kubernetes 沙箱标签、注解及内部命名空间的限制，为既有启动配置合同补充了编排层样本。以下是 Axis 的设计推论，本轮未部署或独立实测。
+
+- 后端会解释的 metadata 应被视为有行为效果的输入，而非普通说明文字。
+- 区分业务可写字段、操作员许可字段和 Runtime 保留字段；扩展字段不能覆盖已经作出的权限决定。
+- 在模板解析、策略合成与后端提交处校验最终有效值，保留字段来源和拒绝原因。
+- 元数据治理只覆盖相应编排路径，不能代替 OS 沙箱、凭据或真实执行结果验证。
+
+参见：[[30 Intelligence/GitHub/Daily/2026-10-23|GitHub Trending — 2026-10-23]] · [[AxisAgent]] · [[Agent Verification and Audit Plane]]
+<!-- trend-watch:2026-10-23-orchestration-metadata:end -->
