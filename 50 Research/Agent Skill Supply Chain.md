@@ -234,3 +234,15 @@ Source / Publisher → Integrity / Static Scan → Install → Runtime Policy �
 - Supply-chain identity 应可贯穿到 Tool Call 和 Verification Evidence。
 
 参见：[[GitHub Trending — 2026-10-12]] · [[Agent Capability Policy Enforcement]] · [[Deterministic Agent Runtime]]
+
+<!-- trend-watch:2026-10-25-runtime-artifacts:begin -->
+## 2026-10-25：首次运行获取的执行依赖
+
+[Impeccable 文档](https://github.com/pbakaus/impeccable) 与 [engine-v0.1.17 发行页](https://github.com/pbakaus/impeccable/releases/tag/engine-v0.1.17) 提供具体样本：Skill 启动器可以另行获取预编译引擎。Skill 文本的版本锁定不能独自描述最终执行内容。
+
+对 [[AxisAgent]] 的增量设计建议：在既有 Source/Installation Record 下记录执行依赖的来源、引擎版本、操作系统与架构、下载制品摘要、获取时刻和启动器到引擎的对应关系。首次下载与后续引擎升级都进入既有完整性、权限和审计流程；恢复旧 Skill 时也需核对所用引擎。
+
+这是供应链模型的补充，不是对项目安全性作出判定。本轮未下载、执行或安装候选依赖。
+
+参见：[[30 Intelligence/GitHub/Daily/2026-10-25|GitHub Trending — 2026-10-25]] · [[Agent Capability Packaging]] · [[Agent Capability Policy Enforcement]]
+<!-- trend-watch:2026-10-25-runtime-artifacts:end -->
