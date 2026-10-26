@@ -288,3 +288,13 @@ Microsoft 的 Windows AI 文档已经形成 C#/.NET 本地模型调用路径，�
 
 参见：[[30 Intelligence/GitHub/Daily/2026-10-24|GitHub Trending — 2026-10-24]] · [[AxisAgent]]
 <!-- trend-watch:2026-10-24-audio-contract:end -->
+
+<!-- trend-watch:2026-10-26-engine-readiness:begin -->
+## 2026-10-26：引擎交付状态与测量范围
+
+[VoiceStudio 的 OmniVoice GGUF 文档](https://github.com/debpalash/VoiceStudio/blob/main/docs/engines/omnivoice-gguf.md) 明确区分源码可构建的原生后端与尚未携带该二进制的桌面安装包，并说明首次权重下载及子进程 GPU 计数的诊断差异。该证据来自当前文档，本轮未构建或实测。
+
+对 [[AxisAIManager]] 的增量设计建议：Engine Registry 分别记录文档能力、平台制品与摘要、模型权重就绪、实际启动及测量资格；不可用时返回缺失原因。基准记录标明进程/设备覆盖范围，并将首次下载、模型加载与稳态生成分开计时。不能从主进程低占用推断整个引擎低占用。
+
+这补充已有的 Engine/Model/Device 模型，不改变当前推理主路径。参见：[[30 Intelligence/GitHub/Daily/2026-10-26|GitHub Trending — 2026-10-26]] · [[Agent Verification and Audit Plane]]
+<!-- trend-watch:2026-10-26-engine-readiness:end -->
