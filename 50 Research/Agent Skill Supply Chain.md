@@ -246,3 +246,13 @@ Source / Publisher → Integrity / Static Scan → Install → Runtime Policy �
 
 参见：[[30 Intelligence/GitHub/Daily/2026-10-25|GitHub Trending — 2026-10-25]] · [[Agent Capability Packaging]] · [[Agent Capability Policy Enforcement]]
 <!-- trend-watch:2026-10-25-runtime-artifacts:end -->
+
+<!-- trend-watch:2026-10-28-installed-revisions:begin -->
+## 2026-10-28：库修订、安装基线与人工改动
+
+[OpenBot 当前 README 的 Local skills 说明](https://github.com/nightly-labs/openbot#local-skills) 将共享库修订与安装副本更新分开，并保护被修改的安装文件。这为已有更新和回滚模型补充了人工修改的处理样本；本轮未安装或独立实测该机制。
+
+对 [[AxisAgent]] 的增量设计建议：安装记录关联 `libraryRevision`、`installedBaseDigest` 与当前文件摘要。升级时分别比较上游变化和本地变化，存在人工修改则保留原内容并显示冲突或合并结果；库中有新版本不等于当前运行副本已经改变。更新回执记录目标修订、合并后的摘要和回滚引用，继续按既有 Runtime Permission 执行。
+
+参见：[[30 Intelligence/GitHub/Daily/2026-10-28|GitHub Trending — 2026-10-28]] · [[Agent Capability Packaging]]
+<!-- trend-watch:2026-10-28-installed-revisions:end -->
