@@ -148,3 +148,13 @@ GitHub Trending 的 AI 热度主要集中在 Python 和 TypeScript，但 C#/.NET
 
 参见：[[30 Intelligence/GitHub/Daily/2026-10-18|GitHub Trending — 2026-10-18]] · [[AxisAgent]] · [[Agent Verification and Audit Plane]]
 <!-- trend-watch:2026-10-18-project-api-grounding:end -->
+
+<!-- trend-watch:2026-10-29-cli-call-cost:begin -->
+## 2026-10-29：Agent 工具调用成本与输出保真
+
+[ILSpy 11.2](https://github.com/icsharpcode/ILSpy/releases/tag/v11.2) 提供 `ilspycmd` 的 win-x64/linux-x64 Native AOT 包，并列出维护者测量及解析、文化环境和输出保真改进。短命令与整项目处理的收益不同；本轮没有重跑其测量。
+
+对 [[AxisAgent]] 的新增工作假设：工具资格记录包含工具版本、发布形态、RID、输入摘要与调用任务；分别考察频繁新建进程的小调用和完整批处理。优化验收同时核对结果、错误与诊断，不能仅以启动成功或耗时降低判定通过。
+
+保留既有技术路线，此处不要求项目立即采用 Native AOT。参见：[[30 Intelligence/GitHub/Daily/2026-10-29|GitHub Trending — 2026-10-29]] · [[Agent Verification and Audit Plane]]
+<!-- trend-watch:2026-10-29-cli-call-cost:end -->
