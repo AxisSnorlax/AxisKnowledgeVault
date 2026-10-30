@@ -292,3 +292,18 @@ Verification Plane → proves what happened and whether it is correct
 二者共同组成比 Prompt Guardrail 更可靠的 Agent 工程边界。
 
 参见：[[GitHub Trending — 2026-10-08]] · [[Agent Verification and Audit Plane]]
+
+<!-- trend-watch:2026-10-30-async-call-state:begin -->
+## 2026-10-30：异步工具的持久化与取消状态
+
+[Infinity 架构](https://infinity.hydro.run/docs/infinity-runtime/architecture/) 描述派发前记录工具调用、稳定消息 ID 去重与按会话顺序执行；[RAP 规范](https://infinity.hydro.run/docs/rap/spec/overview/) 明确取消通知为 best-effort。这些是当前设计文档提供的样本，本轮没有运行或验证其实现。
+
+对 [[AxisAgent]] 的增量工作假设：
+
+- 调用记录与派发状态分别保存，结果和重试都关联原调用身份。
+- 同一会话的状态提交需序列化；跨会话并发不解除共享文件、设备或业务对象的冲突控制。
+- 消息被去重不自动意味着外部副作用 exactly-once；仍需幂等标识、效果读回或补偿策略。
+- `CancelRequested`、`StoppedConfirmed` 与 `OutcomeUnknown` 分开，迟到结果保留调用关联，不以发送取消通知当作停止证据。
+
+这些约束补充既有状态机与 Verification Gate，不改变当前权限模型。参见：[[30 Intelligence/GitHub/Daily/2026-10-30|GitHub Trending — 2026-10-30]] · [[Agent Verification and Audit Plane]]
+<!-- trend-watch:2026-10-30-async-call-state:end -->
