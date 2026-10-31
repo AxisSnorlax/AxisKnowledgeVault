@@ -141,3 +141,16 @@ openai/codex-security 与 2026-10-08 的 Cloudflare security audit skill 形成�
 
 参见：[[30 Intelligence/GitHub/Daily/2026-10-22|GitHub Trending — 2026-10-22]] · [[Agent Memory and Knowledge Lifecycle]] · [[AxisAgent]]
 <!-- trend-watch:2026-10-22-graph-evidence:end -->
+
+<!-- trend-watch:2026-10-31-browser-observation:begin -->
+## 2026-10-31：浏览器观测后端与渲染证据
+
+[Lightpanda 当前 README](https://github.com/lightpanda-io/browser) 区分无图形渲染引擎的自动化能力与文本型 PNG/PDF 输出；[1.0.2 发行说明](https://github.com/lightpanda-io/browser/releases/tag/1.0.2) 列出坐标、事件与协议行为修复。以下为 Axis 的设计推论，本轮未运行该浏览器。
+
+- 验证记录包含观测引擎及版本、平台、渲染模式、目标页面/输入版本与已覆盖行为。
+- DOM/文本内容正确不自动证明视觉布局正确；文本型图片不能当作完整图形渲染的截图。
+- 协议连接成功与网页行为兼容分开；需要真实布局、输入命中或字体表现的检查，使用具备相应能力的后端并保留结果。
+- 无法提供所需观测时记录 coverage gap 或 insufficient evidence，不能以替代格式生成成功给出视觉 PASS。
+
+参见：[[30 Intelligence/GitHub/Daily/2026-10-31|GitHub Trending — 2026-10-31]] · [[AxisAgent]] · [[Deterministic Agent Runtime]]
+<!-- trend-watch:2026-10-31-browser-observation:end -->
