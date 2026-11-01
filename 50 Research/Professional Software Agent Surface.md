@@ -2,7 +2,7 @@
 type: research
 status: active
 topic: professional-software-agent-surface
-updated: 2026-10-18
+updated: 2026-11-01
 tags:
   - agent
   - mcp
@@ -287,3 +287,18 @@ Axis 的设计建议：
 
 参见：[[30 Intelligence/GitHub/Daily/2026-10-18|GitHub Trending — 2026-10-18]] · [[Agent Verification and Audit Plane]] · AFSCADA · AxisProtocolStudio
 <!-- trend-watch:2026-10-18-uncertain-mutation:end -->
+
+<!-- trend-watch:2026-11-01-undo-coverage:begin -->
+## 2026-11-01：撤销覆盖范围与恢复合同
+
+[Unity 官方 Agent 插件 README](https://github.com/Unity-Technologies/unity-agent-plugin) 说明其可直接修改项目或通过 CLI 操作 Editor，同时注明并非每项修改都有编辑器日志或 Undo。这为既有事务与恢复原则补充了具体的能力缺口样本，本轮未运行插件。
+
+对 [[AxisAgent]] 和专业软件的增量工作假设：
+
+- 工具声明 `undoCoverage`、修改的持久化范围和适用的 `recoveryMethod`，未知范围保持未知。
+- 执行前保留适用基线；执行后记录实际变更与恢复引用，不因入口位于 Editor 就假定自动进入撤销栈。
+- 编辑器 Undo、Git/文件快照恢复和外部副作用补偿分别建模；恢复完成后仍需读回验证。
+- 无法证明原子性或可撤销性时，不向调用方承诺整批恢复；沿用已有 partial-result 与结果不确定状态。
+
+参见：[[30 Intelligence/GitHub/Daily/2026-11-01|GitHub Trending — 2026-11-01]] · [[Agent Verification and Audit Plane]]
+<!-- trend-watch:2026-11-01-undo-coverage:end -->
