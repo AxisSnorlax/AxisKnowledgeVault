@@ -298,3 +298,13 @@ Microsoft 的 Windows AI 文档已经形成 C#/.NET 本地模型调用路径，�
 
 这补充已有的 Engine/Model/Device 模型，不改变当前推理主路径。参见：[[30 Intelligence/GitHub/Daily/2026-10-26|GitHub Trending — 2026-10-26]] · [[Agent Verification and Audit Plane]]
 <!-- trend-watch:2026-10-26-engine-readiness:end -->
+
+<!-- trend-watch:2026-11-03-resolved-modalities:begin -->
+## 2026-11-03：多模态制品组合与实际启用能力
+
+[FreeToken v0.2.1](https://github.com/FlashML-org/FreeToken/releases/tag/v0.2.1) 对 GGUF 图像输入的说明提供具体样本：需要匹配的 mmproj，缺失或选择有歧义时按纯文本服务；架构、模板和转换路径也会限制视觉支持。本轮未运行该引擎。
+
+对 [[AxisAIManager]] 的增量工作假设：除主模型身份外，记录配套投影文件摘要、模板与 Runtime 版本、实际启用模态及降级原因。加载成功只证明当前加载路径成立；请求需要图片输入时，应确认视觉路径可用并以相应样例验证，不能将纯文本回退计为多模态成功。
+
+该模型补充现有 Engine/Model/Device 与就绪状态合同，不改变当前推理主路径。参见：[[30 Intelligence/GitHub/Daily/2026-11-03|GitHub Trending — 2026-11-03]] · [[Agent Verification and Audit Plane]]
+<!-- trend-watch:2026-11-03-resolved-modalities:end -->
