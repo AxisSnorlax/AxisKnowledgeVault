@@ -154,3 +154,18 @@ openai/codex-security 与 2026-10-08 的 Cloudflare security audit skill 形成�
 
 参见：[[30 Intelligence/GitHub/Daily/2026-10-31|GitHub Trending — 2026-10-31]] · [[AxisAgent]] · [[Deterministic Agent Runtime]]
 <!-- trend-watch:2026-10-31-browser-observation:end -->
+
+<!-- trend-watch:2026-11-04-desktop-action-receipts:begin -->
+## 2026-11-04：桌面快照身份与动作送达回执
+
+[agent-desktop README](https://github.com/vercel-labs/agent-desktop) 的快照限定引用与 [JSON 合同](https://agent-browser.dev/desktop/json-output) 为已有结果不确定状态提供具体样本：命令成功可携带未验证送达，快照成功也可能不完整。本轮未运行该工具。
+
+对 [[AxisAgent]] 的新增合同建议：
+
+- 观察记录关联 `snapshotId`、目标应用/窗口身份、完整性与截断范围；失效或歧义引用重新观察后再解析。
+- 动作回执分别保存 `delivery`、`retrySafety`、实际读回状态和 `verificationScope`；请求回显不当作观测证据。
+- 送达后的等待失败保留原动作送达事实；效果未知时先读回，不盲目重复可能已经产生副作用的动作。
+- 观察缺口和未验证送达不能直接提升为业务 PASS，即使工具退出码为零。
+
+参见：[[30 Intelligence/GitHub/Daily/2026-11-04|GitHub Trending — 2026-11-04]] · [[Professional Software Agent Surface]] · [[Deterministic Agent Runtime]]
+<!-- trend-watch:2026-11-04-desktop-action-receipts:end -->
