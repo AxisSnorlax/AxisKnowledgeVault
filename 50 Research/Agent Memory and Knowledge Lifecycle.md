@@ -2,7 +2,7 @@
 type: research
 status: working-thesis
 date: 2026-09-11
-updated: 2026-10-20
+updated: 2026-11-06
 topic: agent-memory-knowledge-lifecycle
 tags:
   - agent
@@ -468,3 +468,18 @@ Axis 后续 Memory 架构建议采用：
 
 参见：[[30 Intelligence/GitHub/Daily/2026-10-20|GitHub Trending — 2026-10-20]] · [[AxisAgent]] · [[Agent Verification and Audit Plane]]
 <!-- trend-watch:2026-10-20-retrieval-availability:end -->
+
+<!-- trend-watch:2026-11-06-answerability-evidence:begin -->
+## 2026-11-06：目录就绪、问题覆盖与执行证据
+
+[Auto Ontology MCP 文档](https://github.com/NVIDIA/auto-ontology/blob/main/docs/mcp.md) 给出具体边界：已编译语义层与可用数据库连接是独立条件；目录可以比连接存活更久。部分检查因角色权限无法完成时，返回未验证范围，而非直接判为凭据失效。以下是 Axis 的设计推论，尚未独立实测上游。
+
+- Knowledge Gateway 分开记录语义／索引就绪、数据源可达、问题覆盖预检和实际结果验证；预检通过不将候选答案提升为事实。
+- 回执关联来源与索引版本、查询时间、权限范围及未验证项。来源不可用不等于事实不存在，无法查看管理状态也不自动证明服务损坏。
+- 保存结果的数量、截断状态与查询表达式；部分结果不能支撑完整性结论，空结果与失败分别处理。
+- 知识晋升继续要求可追溯证据。一次健康检查只对其检查范围与时间有效，不能替代后续查询回执。
+
+这补充现有检索缓存生命周期：除了索引新鲜度，还要显式表示“来源是否仍能执行查询”和“本次回答到底验证了什么”。
+
+参见：[[30 Intelligence/GitHub/Daily/2026-11-06|GitHub Trending — 2026-11-06]] · [[Home|Axis Knowledge Vault]] · [[AxisAgent]] · [[Agent Verification and Audit Plane]]
+<!-- trend-watch:2026-11-06-answerability-evidence:end -->
