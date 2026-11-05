@@ -156,3 +156,16 @@ MXC 只能先作为候选，不直接视为已通过：
 
 参见：[[30 Intelligence/GitHub/Daily/2026-10-23|GitHub Trending — 2026-10-23]] · [[AxisAgent]] · [[Agent Verification and Audit Plane]]
 <!-- trend-watch:2026-10-23-orchestration-metadata:end -->
+
+<!-- trend-watch:2026-11-05-policy-evidence-types:begin -->
+## 2026-11-05：策略条件的证据类型与匹配范围
+
+[Octomind 当前 guardrails 文档](https://github.com/Muvon/octomind/blob/master/doc/usage/18-guardrails.md) 为既有覆盖范围原则提供具体样本：工具的能力归属决定 DSL 能否匹配；`has` 只看合并配置，`when` 记录允许调用而非成功结果。同批后续调用可看到前一调用的记录，即使前者尚未执行完毕。文档还说明 shell 示例只匹配参数文本。以下是 Axis 的设计推论，未独立实测上游实现。
+
+- 将 `configured`、`resolved`、`allowed`、`completed`、`verified` 分开，前置条件明确要求哪一层证据。
+- 记录工具到能力的解析来源与未匹配范围；无归属不解释为已通过策略检查，对未覆盖的敏感路径沿用既有拒绝或受限策略。
+- 依赖成功结果的后续动作等待对应完成回执；测试命令被允许或曾调用，不代表测试通过。
+- 文字匹配与事后反馈各自标明覆盖边界，不能提升为 OS 隔离或业务完成证据。
+
+参见：[[30 Intelligence/GitHub/Daily/2026-11-05|GitHub Trending — 2026-11-05]] · [[AxisAgent]] · [[Agent Verification and Audit Plane]] · [[Deterministic Agent Runtime]]
+<!-- trend-watch:2026-11-05-policy-evidence-types:end -->
