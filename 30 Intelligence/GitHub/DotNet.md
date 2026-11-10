@@ -158,3 +158,20 @@ GitHub Trending 的 AI 热度主要集中在 Python 和 TypeScript，但 C#/.NET
 
 保留既有技术路线，此处不要求项目立即采用 Native AOT。参见：[[30 Intelligence/GitHub/Daily/2026-10-29|GitHub Trending — 2026-10-29]] · [[Agent Verification and Audit Plane]]
 <!-- trend-watch:2026-10-29-cli-call-cost:end -->
+
+<!-- trend-watch:2026-11-10-mcp-sdk-state:begin -->
+## 2026-11-10：MCP C# SDK 的扩展成熟度与连接状态
+
+[官方 SDK 2.4.0](https://github.com/modelcontextprotocol/csharp-sdk/releases/tag/v2.4.0) 于 11 月 7 日发布，新增实验性 Skills 扩展，并修复发现探测提前固定协商版本、取消与 OAuth 元数据错误混淆等问题。[包说明](https://github.com/modelcontextprotocol/csharp-sdk) 将 Skills、Apps、Tasks 与基础 SDK 分开。
+
+对 [[AxisAgent]] 的新增设计建议：
+
+- 记录实际包版本、扩展成熟度及服务端能力；实验性 Skills 支持不等于任意客户端已互通。
+- 将探测、最终协议协商和活跃会话状态分开；用户取消、传输停止、鉴权失败保留各自原因。
+- 刷新凭据仍绑定同一资源身份；文件清单验证只提供完整性证据，不自动授予 Skill 执行权限。
+- 资格验证覆盖既有会话、通知、取消与重连，并以用户项目目标框架和发布形态为准。
+
+这是基于上游发行记录的研究推论，本轮未升级依赖或运行 SDK；不构成立即升级要求。
+
+参见：[[30 Intelligence/GitHub/Daily/2026-11-10|GitHub Trending — 2026-11-10]] · [[Agent Skill Supply Chain]] · [[Deterministic Agent Runtime]]
+<!-- trend-watch:2026-11-10-mcp-sdk-state:end -->
