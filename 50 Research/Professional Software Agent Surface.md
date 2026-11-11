@@ -2,7 +2,7 @@
 type: research
 status: active
 topic: professional-software-agent-surface
-updated: 2026-11-01
+updated: 2026-11-11
 tags:
   - agent
   - mcp
@@ -302,3 +302,18 @@ Axis 的设计建议：
 
 参见：[[30 Intelligence/GitHub/Daily/2026-11-01|GitHub Trending — 2026-11-01]] · [[Agent Verification and Audit Plane]]
 <!-- trend-watch:2026-11-01-undo-coverage:end -->
+
+<!-- trend-watch:2026-11-11-derived-refresh-coverage:begin -->
+## 2026-11-11：刷新覆盖范围与派生结果新鲜度
+
+[ExcelMcp 2.6.12](https://github.com/sbroenne/mcp-server-excel/releases/tag/v2.6.12) 的修复说明提供具体反例：源查询刷新后，不同缓存的透视表汇总仍可能过期，需要逐个刷新报表。这里提炼为专业软件的设计约束，本轮未操作 Excel 或独立实测。
+
+- 完成回执列出受影响的派生对象及各自结果；同源对象不意味着共用缓存或刷新进度。
+- 分开记录源读取、刷新、重算、保存与读回验证；任何一步的成功都不自动证明其余步骤完成。
+- 聚合结果保留失败、跳过和未验证对象，不能把部分成功折叠为整批完成。
+- 交互阻塞记录已确认的对话框与当前状态；等待超时不自动回答提示、丢弃编辑或证明任务没有副作用。
+
+这补充既有 Read-back 合同：应验证用户实际消费的报表／图表／派生视图，而不只验证源对象更新。
+
+参见：[[30 Intelligence/GitHub/Daily/2026-11-11|GitHub Trending — 2026-11-11]] · [[AxisAgent]] · [[Agent Verification and Audit Plane]]
+<!-- trend-watch:2026-11-11-derived-refresh-coverage:end -->

@@ -86,3 +86,19 @@ tags:
 
 参见：[[30 Intelligence/GitHub/Daily/2026-10-24|GitHub Trending — 2026-10-24]]
 <!-- trend-watch:2026-10-24-recovery-snapshots:end -->
+
+<!-- trend-watch:2026-11-11-reactor-maturity:begin -->
+## 2026-11-11：Reactor 的编写层与工具成熟度
+
+[Microsoft.UI.Reactor README](https://github.com/microsoft/microsoft-ui-reactor) 描述真实 WinUI 控件之上的声明式 C# 编写方式，并给核心、DevTools、数据及异步能力分别标记成熟度。[0.1.0-preview.17](https://github.com/microsoft/microsoft-ui-reactor/releases/tag/v0.1.0-preview.17) 仍为预发布，框架、可选扩展、诊断包、Skill Kit 与 Visual Studio 内嵌预览分开交付。
+
+对 [[AxisAgent]] 的研究建议：
+
+- 将编写方式与底层 WinUI 平台分开，保留现有 XAML／MVVM 互操作及技术选择。
+- 按所需功能核对成熟度、实际包版本和工具依赖；核心可用不证明预览工具、可访问性或 AOT 路径全部通过。
+- 评价增量协调与控件复用时同时核对状态、焦点、DPI 和诊断输出；调试工具可用不等于可默认随正式产品开放。
+
+本轮未安装框架、CLI 或 VSIX，也未开展代码迁移；此项为候选观察，不构成项目切换依据。
+
+参见：[[30 Intelligence/GitHub/Daily/2026-11-11|GitHub Trending — 2026-11-11]] · [[DotNet]] · [[Agent Verification and Audit Plane]]
+<!-- trend-watch:2026-11-11-reactor-maturity:end -->
