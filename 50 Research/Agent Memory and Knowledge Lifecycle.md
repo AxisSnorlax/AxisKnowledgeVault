@@ -2,7 +2,7 @@
 type: research
 status: working-thesis
 date: 2026-09-11
-updated: 2026-11-06
+updated: 2026-11-12
 topic: agent-memory-knowledge-lifecycle
 tags:
   - agent
@@ -483,3 +483,20 @@ Axis 后续 Memory 架构建议采用：
 
 参见：[[30 Intelligence/GitHub/Daily/2026-11-06|GitHub Trending — 2026-11-06]] · [[Home|Axis Knowledge Vault]] · [[AxisAgent]] · [[Agent Verification and Audit Plane]]
 <!-- trend-watch:2026-11-06-answerability-evidence:end -->
+
+<!-- trend-watch:2026-11-12-handoff-plan-validity:begin -->
+## 2026-11-12：交接计划的基线与失效条件
+
+[shadcn/improve 的示例计划](https://github.com/shadcn/improve/blob/main/examples/001-extract-shadow-config-resolution.md) 绑定历史 commit、当前代码摘录、修改范围、验证步骤和停止条件，并明确示例已不能直接用于演进后的代码。这为既有 Handoff 分层补充了计划适用性的具体样本。
+
+对 Axis 的设计推论：
+
+- 将 Plan Artifact 与事实、决策、执行回执分型；计划被保存或标为已审阅，不代表代码已经实现。
+- 关联 `plannedAgainst`、适用文件范围、依赖和前置条件；执行前对照当前代码，失配时重新评估计划，不沿用旧摘录推断现场状态。
+- 保存可验证的完成判据与停止条件；实现、测试、合并分别由对应证据推进状态。
+- 积压计划可标记已替代、失效或待重审；被否决的发现保留理由及适用基线，避免重复报告，也允许新证据触发复审。
+
+以上是研究建议，不是执行授权或已实现功能；模型分工的成本与质量仍需实际任务验证。
+
+参见：[[30 Intelligence/GitHub/Daily/2026-11-12|GitHub Trending — 2026-11-12]] · [[AxisAgent]] · [[Durable Agent Runtime Identity]] · [[Agent Verification and Audit Plane]]
+<!-- trend-watch:2026-11-12-handoff-plan-validity:end -->
