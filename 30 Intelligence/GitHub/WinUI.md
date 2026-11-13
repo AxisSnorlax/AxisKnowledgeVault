@@ -102,3 +102,20 @@ tags:
 
 参见：[[30 Intelligence/GitHub/Daily/2026-11-11|GitHub Trending — 2026-11-11]] · [[DotNet]] · [[Agent Verification and Audit Plane]]
 <!-- trend-watch:2026-11-11-reactor-maturity:end -->
+
+<!-- trend-watch:2026-11-13-release-mode-qualification:begin -->
+## 2026-11-13：发布通道、合成模式与动态数据验证
+
+[WinUI / WinAppSDK 2.6.5](https://github.com/microsoft/microsoft-ui-xaml/releases/tag/winui3%2Frelease%2F2.6.5) 修复多显卡／显示器渲染及合成接口缺失问题，并明确 System Composition Engine 模式下 content islands 与 XAML windows 的系统背景限制。[2.6.6-experimental 发布记录](https://github.com/microsoft/microsoft-ui-xaml/releases) 则新增 TableView 层级／实时整形、Chart UIA 与可选的滚动视口外绘制；两者页面均显示 11 月 11 日，但发布通道不同。
+
+对 [[AxisAgent]] 的设计推论：
+
+- UI 资格记录绑定包版本、稳定／实验通道、系统版本和实际合成模式；不从更高版本号推导全部能力可用。
+- 多显卡、多显示器与背景材质分别验证，保留回退模式及不支持原因。
+- 动态排序、分组和层级变动后重新核对对象身份、可见内容与自动化树；增加 UIA 接口不自动证明定位始终稳定。
+- 视口外绘制是独立选项；启用后另验视觉、命中测试和裁剪行为，不凭可见结果猜测输入区域。
+
+这是待验证的研究候选，本轮未升级框架或修改 XAML，不改变现有 UI 技术路线。
+
+参见：[[30 Intelligence/GitHub/Daily/2026-11-13|GitHub Trending — 2026-11-13]] · [[DotNet]] · [[Agent Verification and Audit Plane]]
+<!-- trend-watch:2026-11-13-release-mode-qualification:end -->
