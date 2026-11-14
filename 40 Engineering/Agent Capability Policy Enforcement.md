@@ -169,3 +169,18 @@ MXC 只能先作为候选，不直接视为已通过：
 
 参见：[[30 Intelligence/GitHub/Daily/2026-11-05|GitHub Trending — 2026-11-05]] · [[AxisAgent]] · [[Agent Verification and Audit Plane]] · [[Deterministic Agent Runtime]]
 <!-- trend-watch:2026-11-05-policy-evidence-types:end -->
+
+<!-- trend-watch:2026-11-14-final-egress-coverage:begin -->
+## 2026-11-14：最终出站内容与逐次发送检查
+
+[CC Switch 4.0.31](https://github.com/farion1231/cc-switch/releases/tag/v4.0.31) 将隐私过滤移到每次上游发送前，以覆盖重试和后来生成的摘要，同时注明工具说明文字不在过滤范围。以下为 Axis 的设计推论，本轮未安装或独立验证上游。
+
+- 入口已检查不代表后续构造内容也已检查；在最终出站处覆盖适用字段，并对重试／故障转移逐次执行。
+- 回执关联发送目标、尝试编号、转换阶段与规则版本；目标变化时重新核对适用的出站策略。
+- 明确纳入和排除的字段，不能将局部文本过滤提升为“全请求已脱敏”或授权证明。
+- 审计保留决定和覆盖信息，不为了证明过滤生效而记录原始机密值；效果仍需以对应输入类别验证。
+
+该样本补充既有 Hook／Proxy Coverage 模型：除了工具路径，还需要说明请求在何时、经过哪些转换后接受检查。
+
+参见：[[30 Intelligence/GitHub/Daily/2026-11-14|GitHub Trending — 2026-11-14]] · [[AxisAgent]] · [[Agent Verification and Audit Plane]]
+<!-- trend-watch:2026-11-14-final-egress-coverage:end -->
