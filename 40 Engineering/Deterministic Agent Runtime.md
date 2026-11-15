@@ -307,3 +307,19 @@ Verification Plane → proves what happened and whether it is correct
 
 这些约束补充既有状态机与 Verification Gate，不改变当前权限模型。参见：[[30 Intelligence/GitHub/Daily/2026-10-30|GitHub Trending — 2026-10-30]] · [[Agent Verification and Audit Plane]]
 <!-- trend-watch:2026-10-30-async-call-state:end -->
+
+<!-- trend-watch:2026-11-15-cancel-queue-ownership:begin -->
+## 2026-11-15：取消之后的队列所有权
+
+[Chrome DevTools MCP #3079](https://github.com/ChromeDevTools/chrome-devtools-mcp/pull/3079) 已合并，并列入 [1.13.0](https://github.com/ChromeDevTools/chrome-devtools-mcp/releases/tag/chrome-devtools-mcp-v1.13.0)。其最终说明保留已执行工作的队列 guard，直到工作结束；取消调用方等待不提前释放。无法结束的处理器仍可能阻塞队列，本轮未独立实测。
+
+对 Axis 的增量设计建议：
+
+- 区分排队撤销与运行中取消；后者在资源状态未确认前，保持关联队列的冲突控制。
+- 取消结果、执行结束和资源释放分别记录，迟到结果关联原调用，避免进入下一调用的响应处理。
+- 挂起工作进入可诊断的恢复状态；不能仅为继续调度而把尚在运行的资源标为空闲。
+
+这将 10 月 30 日的取消状态分层落实到队列所有权，仍不承诺强制停止或撤销外部副作用。
+
+参见：[[30 Intelligence/GitHub/Daily/2026-11-15|GitHub Trending — 2026-11-15]] · [[AxisAgent]] · [[Agent Verification and Audit Plane]]
+<!-- trend-watch:2026-11-15-cancel-queue-ownership:end -->
