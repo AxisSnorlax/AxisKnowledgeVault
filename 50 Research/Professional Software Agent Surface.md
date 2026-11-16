@@ -2,7 +2,7 @@
 type: research
 status: active
 topic: professional-software-agent-surface
-updated: 2026-11-11
+updated: 2026-11-16
 tags:
   - agent
   - mcp
@@ -317,3 +317,19 @@ Axis 的设计建议：
 
 参见：[[30 Intelligence/GitHub/Daily/2026-11-11|GitHub Trending — 2026-11-11]] · [[AxisAgent]] · [[Agent Verification and Audit Plane]]
 <!-- trend-watch:2026-11-11-derived-refresh-coverage:end -->
+
+<!-- trend-watch:2026-11-16-draft-commit-before-save:begin -->
+## 2026-11-16：编辑草稿提交与保存前置条件
+
+[Univer 1.5.0](https://github.com/dream-num/univer/releases/tag/v1.5.0) 的 Slides Pro 接口说明要求自定义保存先等待文本编辑提交成功；IME 仍在组词或草稿提交失败时返回 false。这为既有刷新／保存分层补充了输入阶段的具体样本，本轮未接入或独立实测该 SDK。
+
+对 Axis 的设计推论：
+
+- 分别表示编辑控件草稿、已提交领域模型与持久化版本；屏幕可见内容不自动成为可保存模型。
+- 保存流程显式等待输入提交结果，失败或组词未结束时保留草稿及原因，不报告该草稿已保存。
+- 读回验证关联本次提交的模型版本，覆盖中文组词期间保存、失焦提交失败及并发外部更新等情形。
+
+这些是后续资格验证场景；接口来自商业扩展，不能将其能力归入默认开源核心或直接视为 WPF／WinUI 已有行为。
+
+参见：[[30 Intelligence/GitHub/Daily/2026-11-16|GitHub Trending — 2026-11-16]] · [[AxisAgent]] · [[Agent Verification and Audit Plane]]
+<!-- trend-watch:2026-11-16-draft-commit-before-save:end -->
