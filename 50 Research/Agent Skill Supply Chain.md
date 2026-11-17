@@ -256,3 +256,17 @@ Source / Publisher → Integrity / Static Scan → Install → Runtime Policy �
 
 参见：[[30 Intelligence/GitHub/Daily/2026-10-28|GitHub Trending — 2026-10-28]] · [[Agent Capability Packaging]]
 <!-- trend-watch:2026-10-28-installed-revisions:end -->
+
+<!-- trend-watch:2026-11-17-skill-evaluation-gates:begin -->
+## 2026-11-17：评估入口、阻断规则与基线身份
+
+[NVIDIA SkillEvaluator README](https://github.com/NVIDIA/SkillEvaluator) 给出静态质量通过而发布证据仍不完整的样本；独立组合 `validate` 的 Tier 3 需要 `--block-on-agent-eval` 才阻断。[v0.9.0](https://github.com/NVIDIA/SkillEvaluator/releases/tag/v0.9.0) 则明确生成的 all-tier CI 仍把 Tier 3 作为 advisory，并区分旧版本比较与无技能基线的 Skill Lift。两种入口的门槛不能相互代用。
+
+对 [[AxisAgent]] 的增量设计建议：在现有质量和安全记录旁保留 `evaluationEntryPoint`、评估器及数据集修订、`gatePolicy`、实际阻断阶段、`baselineKind`／基线引用、完整或部分运行状态与未覆盖项。总分之外，回执应能回答“比较了什么、哪些检查被要求通过、还有什么尚未验证”。这些是本知识库提出的字段，不是项目现成 API。
+
+技能升级可分别比较相对旧版本的变化，以及相对无技能运行的收益；保持任务、模型与检查条件可比，避免把换基线后的分数当作连续改进。预算中止、基线失败或数据不足时保留已有证据及缺口，由明确的发布策略决定处理方式，不将未知改写为通过。评估门槛也不能扩大原有 Runtime Permission。
+
+本轮仅核对官方文档与发行说明，未安装或独立运行评估器。这里补充的是供应链中的评价回执，不替代 [[Agent Verification and Audit Plane]] 的最终验证责任。
+
+参见：[[30 Intelligence/GitHub/Daily/2026-11-17|GitHub Trending — 2026-11-17]] · [[Agent Capability Packaging]] · [[Agent Capability Policy Enforcement]]
+<!-- trend-watch:2026-11-17-skill-evaluation-gates:end -->
