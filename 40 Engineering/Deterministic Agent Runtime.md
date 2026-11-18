@@ -323,3 +323,20 @@ Verification Plane → proves what happened and whether it is correct
 
 参见：[[30 Intelligence/GitHub/Daily/2026-11-15|GitHub Trending — 2026-11-15]] · [[AxisAgent]] · [[Agent Verification and Audit Plane]]
 <!-- trend-watch:2026-11-15-cancel-queue-ownership:end -->
+
+<!-- trend-watch:2026-11-18-heartbeat-lease-ownership:begin -->
+## 2026-11-18：心跳时效与租约持有者
+
+[LoopForge #810](https://github.com/Tencent/LoopForge/pull/810) 已合并并列入 [v0.4.0](https://github.com/Tencent/LoopForge/releases/tag/v0.4.0)。其最终说明把生成心跳与租约续期拆成独立循环，回收时用 `run_id + lease_token` 条件匹配原租约，并在数据库时钟下判断续期年龄。另一副本仍可能把慢心跳回合记为中断，续期保护的作用是避免误释放活跃持有者的工作区。本轮未独立实测。
+
+对 [[AxisAgent]] 的增量设计建议：
+
+- 分别记录心跳观测时间、持有者／回合身份、租约代次或 token、最后续期和最终状态；心跳过期先形成待核实状态，不直接证明资源已空闲。
+- 清理旧回合时条件匹配其持有的租约；若已续期或被新回合替换，拒绝释放并保留冲突证据，避免旧清理动作影响后来者。
+- 明确用于超时判断的权威时钟；心跳持久化阻塞不应连带阻塞续租，具体错误分类及容忍时间由执行环境决定。
+- 将执行状态纠正与资源所有权恢复分开验证；界面显示恢复为 running 不能单独证明持久状态或租约已经一致。
+
+这是对 11 月 15 日取消后队列所有权的补充，不承诺通过心跳机制解决所有多实例一致性问题。上述字段与状态处理是本知识库的设计建议，不是该项目 API 合同。
+
+参见：[[30 Intelligence/GitHub/Daily/2026-11-18|GitHub Trending — 2026-11-18]] · [[Durable Agent Runtime Identity]] · [[Agent Verification and Audit Plane]]
+<!-- trend-watch:2026-11-18-heartbeat-lease-ownership:end -->
