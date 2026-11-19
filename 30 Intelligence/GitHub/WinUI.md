@@ -119,3 +119,21 @@ tags:
 
 参见：[[30 Intelligence/GitHub/Daily/2026-11-13|GitHub Trending — 2026-11-13]] · [[DotNet]] · [[Agent Verification and Audit Plane]]
 <!-- trend-watch:2026-11-13-release-mode-qualification:end -->
+
+<!-- trend-watch:2026-11-19-native-release-qualification:begin -->
+## 2026-11-19：NativeAOT 制品与输入／关闭过程验证
+
+[FluentCleaner 26.11.99](https://github.com/builtbybel/FluentCleaner/releases/tag/26.11.99) 提供 WinUI 3 NativeAOT 预览样本：设置和应用清单读取使用生成代码，并移除该应用未使用的 AI 依赖。作者报告的启动收益是其单机数据，本轮未独立复测；Modern 与 Classic 是独立构建，不能混合比较。
+
+本轮同时首次核对到 [WinUI / WinAppSDK 2.7.0](https://github.com/microsoft/microsoft-ui-xaml/releases/tag/winui3%2Frelease%2F2.7.0)，官方日期为 11 月 17 日。它修复 System 合成模式下的 DPI 输入偏移，以及 XAML 线程退出后后台读取 `Window.DispatcherQueue` 的崩溃；这与应用是否使用 NativeAOT 是不同层面的证据。
+
+对 [[AxisAgent]] 的增量研究建议：
+
+- 按具体制品记录框架版本、架构、编译／部署方式及裁剪依赖；配置兼容与应用清单读取独立验证，不能仅凭体积减小判断兼容性通过。
+- 性能比较保持工作负载、机器、输入与测量边界一致，区分首帧、可交互和实际任务完成；同时保留冷／热启动条件，避免把依赖删减的收益全部归因于编译方式。
+- 验证 DPI 变换后的输入命中，并覆盖窗口关闭后迟到的后台访问；视觉正常和某次启动成功不足以覆盖这些生命周期路径。
+
+这是候选资格范围的补充，未构建、测试或迁移现有 .NET 项目，不改变当前 UI 技术路线。
+
+参见：[[30 Intelligence/GitHub/Daily/2026-11-19|GitHub Trending — 2026-11-19]] · [[DotNet]] · [[Agent Verification and Audit Plane]]
+<!-- trend-watch:2026-11-19-native-release-qualification:end -->
