@@ -308,3 +308,15 @@ Microsoft 的 Windows AI 文档已经形成 C#/.NET 本地模型调用路径，�
 
 该模型补充现有 Engine/Model/Device 与就绪状态合同，不改变当前推理主路径。参见：[[30 Intelligence/GitHub/Daily/2026-11-03|GitHub Trending — 2026-11-03]] · [[Agent Verification and Audit Plane]]
 <!-- trend-watch:2026-11-03-resolved-modalities:end -->
+
+<!-- trend-watch:2026-11-20-concurrent-device-allocation:begin -->
+## 2026-11-20：并发媒体与 AI 负载的设备分配
+
+[Transub Player v1.8.0](https://github.com/dlsandy/Transub-Player/releases/tag/v1.8.0) 将识别 GPU 选择与播放硬解分开，并针对 HandBrake QSV 与 Whisper Vulkan 并发记录设备选择及线程限制调整。[Issue #19](https://github.com/dlsandy/Transub-Player/issues/19) 的报告者反馈，在其 Arc A380／RTX 5060 环境中，1.7.2 后崩溃消失但仍有 CPU 占用问题。这是特定用户环境反馈，本轮未独立复现，也不推导所有 Intel 或双显卡设备都有相同行为。
+
+对 [[AxisAIManager]] 的增量设计建议：在既有 Engine/Model/Device 记录中，按播放／解码、ASR、翻译等阶段分别保存实际后端、设备身份、线程或资源限制、并发任务与回退原因。不能用一个“已选 GPU”标签概括多个子进程的全部负载。
+
+验证分别观察单任务与并发运行的流畅性、原文识别进度、译文追赶、资源占用和退出后的释放；设备切换需确认实际生效，CPU 回退也要记录其代价。这补充已有硬件画像与测量来源，不替换当前推理主路径。
+
+参见：[[30 Intelligence/GitHub/Daily/2026-11-20|GitHub Trending — 2026-11-20]] · [[AxisAgent]] · [[Agent Verification and Audit Plane]]
+<!-- trend-watch:2026-11-20-concurrent-device-allocation:end -->
