@@ -2,7 +2,7 @@
 type: research
 status: active
 topic: professional-software-agent-surface
-updated: 2026-11-16
+updated: 2026-11-21
 tags:
   - agent
   - mcp
@@ -333,3 +333,19 @@ Axis 的设计建议：
 
 参见：[[30 Intelligence/GitHub/Daily/2026-11-16|GitHub Trending — 2026-11-16]] · [[AxisAgent]] · [[Agent Verification and Audit Plane]]
 <!-- trend-watch:2026-11-16-draft-commit-before-save:end -->
+
+<!-- trend-watch:2026-11-21-numeric-transport-fidelity:begin -->
+## 2026-11-21：数值序列化与显示／写回边界
+
+[DBX #15153](https://github.com/t8y2/dbx/pull/15153) 已合并并列入 [v0.6.72](https://github.com/t8y2/dbx/releases/tag/v0.6.72)。原生 PostgreSQL 驱动把标量 `real` 转 JSON 时固定保留六位小数，令很小的非零数变成零；修复使用能往返回原始 `f32` 的十进制表示。这是结果解码层的保真问题，不仅是 UI 显示；上游提供前后对照，本轮未独立复测。
+
+对 [[AxisAgent]] 及专业软件的增量设计建议：
+
+- 分开记录原始类型／值、序列化表示与界面格式化；返回结构化 JSON 不自动证明精度未损失，校验应按原始类型的往返语义进行。
+- 复制、导出和写回明确采用哪一层值；显示舍入不应静默进入领域参数或后续计算，精度限制需要可见。
+- 编辑或导出 UPDATE 时，将选中字段、稳定行身份及来源版本与候选值共同核对，避免界面位置或格式化字符串成为写回依据。
+
+这补充已有 Typed Contract 与 Read-back 原则，适用于数值敏感的协议、标定和数据库工具；具体字段和验证策略仍是研究建议，未修改任何业务数据或 .NET 实现。
+
+参见：[[30 Intelligence/GitHub/Daily/2026-11-21|GitHub Trending — 2026-11-21]] · [[Agent Verification and Audit Plane]]
+<!-- trend-watch:2026-11-21-numeric-transport-fidelity:end -->
