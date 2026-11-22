@@ -169,3 +169,19 @@ openai/codex-security 与 2026-10-08 的 Cloudflare security audit skill 形成�
 
 参见：[[30 Intelligence/GitHub/Daily/2026-11-04|GitHub Trending — 2026-11-04]] · [[Professional Software Agent Surface]] · [[Deterministic Agent Runtime]]
 <!-- trend-watch:2026-11-04-desktop-action-receipts:end -->
+
+<!-- trend-watch:2026-11-22-proxy-error-provenance:begin -->
+## 2026-11-22：代理错误来源与超时阶段
+
+[RTK 1.2.1](https://github.com/rtk-ai/rtk/releases/tag/v1.2.1) 收录的[迟到错误修复](https://github.com/rtk-ai/rtk/commit/638d99888f2eb5c67ff4e145bbdf03258b0f6620) 提供具体样本：流式请求收到较晚的上游错误时，错误体读取预算若仍从原请求开始计时，就可能立即耗尽，将真正的上游状态掩盖为通用 502。修复调整了错误回答到达后的读取预算，本轮未独立实测。
+
+对 [[AxisAgent]] 的增量证据合同建议：
+
+- 区分连接、等待响应、成功流传输和错误体读取阶段；记录预算所属阶段、尝试次数及实际终止原因，不仅记录一个“timeout”。
+- 同时保留已知的上游状态、代理生成的状态、错误体是否完整及原始证据引用；错误体未读全不应抹掉已经观察到的来源和状态。
+- 回复开始、流片段到达、流正常结束与业务验证分别判定；结果不完整或执行效果未知时保留原调用身份，再按幂等条件判断重试。
+
+这些是本知识库提出的合同字段与处理原则，不代表所有网络阶段应共享同一时限，也不把代理修复当作端到端任务已成功的证明。
+
+参见：[[30 Intelligence/GitHub/Daily/2026-11-22|GitHub Trending — 2026-11-22]] · [[Deterministic Agent Runtime]] · [[Professional Software Agent Surface]]
+<!-- trend-watch:2026-11-22-proxy-error-provenance:end -->
