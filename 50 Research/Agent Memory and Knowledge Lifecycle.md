@@ -2,7 +2,7 @@
 type: research
 status: working-thesis
 date: 2026-09-11
-updated: 2026-11-12
+updated: 2026-11-23
 topic: agent-memory-knowledge-lifecycle
 tags:
   - agent
@@ -500,3 +500,17 @@ Axis 后续 Memory 架构建议采用：
 
 参见：[[30 Intelligence/GitHub/Daily/2026-11-12|GitHub Trending — 2026-11-12]] · [[AxisAgent]] · [[Durable Agent Runtime Identity]] · [[Agent Verification and Audit Plane]]
 <!-- trend-watch:2026-11-12-handoff-plan-validity:end -->
+
+<!-- trend-watch:2026-11-23-summary-snapshot-commit:begin -->
+## 2026-11-23：摘要读取快照与条件提交
+
+[Rig #3436](https://github.com/0xPlaygrounds/rig/pull/3436) 已合并并列入 [v0.47.0](https://github.com/0xPlaygrounds/rig/releases/tag/v0.47.0)。摘要只替换生成时读到且提交时仍未改变的消息；期间新增消息保留，原消息被编辑则拒绝提交，空摘要也失败。被压缩原文仍保留在 transcript 中。本轮未独立实测。
+
+对 [[AxisAgent]] 的增量设计建议：将压缩准备时的消息范围、版本／摘要、生成结果和提交结果分别记录。提交时校验来源，不能以提交时的当前边界替代原读取范围；不满足条件则保留当前内容并重新评估，避免覆盖人工修订或并发输入。
+
+来源一致性、摘要语义质量和原文可回取性是三项不同判据。即使条件提交成功，也继续保留来源关联、遗漏检查与原始证据；自动归档的成稿仍需经过既有 Review／Promote 流程才能成为长期知识。
+
+这是 Working Context 更新合同的研究补充，不改变本知识库的 Git／Markdown 事实源，也不代表已修改当前聊天或客户端的压缩机制。
+
+参见：[[30 Intelligence/GitHub/Daily/2026-11-23|GitHub Trending — 2026-11-23]] · [[Agent Verification and Audit Plane]] · [[Deterministic Agent Runtime]]
+<!-- trend-watch:2026-11-23-summary-snapshot-commit:end -->

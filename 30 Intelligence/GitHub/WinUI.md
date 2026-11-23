@@ -137,3 +137,13 @@ tags:
 
 参见：[[30 Intelligence/GitHub/Daily/2026-11-19|GitHub Trending — 2026-11-19]] · [[DotNet]] · [[Agent Verification and Audit Plane]]
 <!-- trend-watch:2026-11-19-native-release-qualification:end -->
+
+<!-- trend-watch:2026-11-23-native-release-followup:begin -->
+## 2026-11-23：NativeAOT 发布状态跟进
+
+[FluentCleaner 26.11.108](https://github.com/builtbybel/FluentCleaner/releases/tag/26.11.108)（页面显示 11 月 19 日）宣布 NativeAOT 构建结束预览，并说明设置中的语言列表曾因残余反射依赖路径为空，已在重传制品及本版修复。这更新了 11 月 19 日对 26.11.99 预览的观察，旧日期记录继续保留。
+
+对 [[AxisAgent]] 的增量研究建议：制品身份记录版本之外还应保留文件摘要，验收覆盖语言选择等低频设置路径；启动和首帧数据不能独自证明所有动态访问路径可用。作者结束预览的声明与本机资格验证分别记录，本轮未下载制品、复测性能或迁移 .NET 项目。
+
+参见：[[30 Intelligence/GitHub/Daily/2026-11-23|GitHub Trending — 2026-11-23]] · [[DotNet]] · [[Agent Verification and Audit Plane]]
+<!-- trend-watch:2026-11-23-native-release-followup:end -->
