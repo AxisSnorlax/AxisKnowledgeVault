@@ -65,3 +65,19 @@ tags:
 
 参见：[[30 Intelligence/GitHub/Daily/2026-11-10|GitHub Trending — 2026-11-10]] · [[DotNet]] · [[Agent Verification and Audit Plane]]
 <!-- trend-watch:2026-11-10-event-state-consistency:end -->
+
+<!-- trend-watch:2026-11-24-binding-feedback-automation:begin -->
+## 2026-11-24：12.2.0 的绑定反馈与自动化关系
+
+[Avalonia 12.2.0](https://github.com/AvaloniaUI/Avalonia/releases/tag/12.2.0) 于 11 月 23 日发布。除 Fluent 2、FlexPanel 和视觉几何命中测试外，发行记录包含避免双向绑定把源刚发布的值写回、Windows UIA `LabeledBy`、自动化 peer 移到新父节点后的关系保留，以及剪贴板争用时的读取重试。
+
+对 Axis 桌面应用的增量研究建议：
+
+- 分别核对源通知与用户编辑引起的回写，避免重复领域动作；绑定能显示值不等于反馈路径正确。
+- 主题和布局改变后同时验证实际命中区域与自动化关系；可见标签、UIA 关联和稳定对象身份分别记录。
+- 控件移动、重新挂接及外部剪贴板占用属于独立场景；重试成功与最终内容验证分别取证，失败时保留原因。
+
+本轮仅核对官方发布记录，未升级、构建或运行 .NET 项目。这些是后续资格验证范围，不是性能比较结果或当前技术路线变更。
+
+参见：[[30 Intelligence/GitHub/Daily/2026-11-24|GitHub Trending — 2026-11-24]] · [[DotNet]] · [[Agent Verification and Audit Plane]]
+<!-- trend-watch:2026-11-24-binding-feedback-automation:end -->
