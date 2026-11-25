@@ -2,7 +2,7 @@
 type: research
 status: active
 topic: professional-software-agent-surface
-updated: 2026-11-21
+updated: 2026-11-25
 tags:
   - agent
   - mcp
@@ -349,3 +349,19 @@ Axis 的设计建议：
 
 参见：[[30 Intelligence/GitHub/Daily/2026-11-21|GitHub Trending — 2026-11-21]] · [[Agent Verification and Audit Plane]]
 <!-- trend-watch:2026-11-21-numeric-transport-fidelity:end -->
+
+<!-- trend-watch:2026-11-25-preview-semantic-coverage:begin -->
+## 2026-11-25：预览的语义覆盖范围
+
+[DBX #15545](https://github.com/t8y2/dbx/pull/15545) 已合并并列入 [v0.6.74](https://github.com/t8y2/dbx/releases/tag/v0.6.74)。旧预览把 SET 表达式都作用于旧行，无法准确表示 MySQL 单表 UPDATE 中后续赋值读取前面更新值的行为；修复拒绝该类预览，但仍允许用户执行原语句。本轮未独立复测。
+
+对 [[AxisAgent]] 和专业软件的增量设计建议：
+
+- 预览回执关联操作摘要、来源版本、方言／引擎和模拟覆盖范围；能显示差异不自动证明模拟符合真实执行语义。
+- 无法可靠模拟时显式返回不支持及原因，保留候选操作，不输出可能误导的前后值。预览不支持与操作被禁止分别表示，继续由独立权限和验证流程处理。
+- 执行前重新核对预览所依赖的状态；执行后记录实际结果并读回验证，不把预测视图当作执行回执。
+
+这补充已有数值保真和 Read-back 原则，字段与处理流程是研究建议，未修改业务数据库或 .NET 实现。
+
+参见：[[30 Intelligence/GitHub/Daily/2026-11-25|GitHub Trending — 2026-11-25]] · [[Agent Verification and Audit Plane]] · [[Deterministic Agent Runtime]]
+<!-- trend-watch:2026-11-25-preview-semantic-coverage:end -->
