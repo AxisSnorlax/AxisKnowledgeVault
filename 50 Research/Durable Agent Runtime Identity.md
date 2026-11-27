@@ -32,3 +32,17 @@
 
 参见：[[30 Intelligence/GitHub/Daily/2026-11-09|GitHub Trending — 2026-11-09]] · [[AxisAgent]] · [[Agent Memory and Knowledge Lifecycle]] · [[Agent Verification and Audit Plane]]
 <!-- trend-watch:2026-11-09-execution-environment-identity:end -->
+
+<!-- trend-watch:2026-11-27-process-cleanup-identity:begin -->
+## 2026-11-27：清理动作与仍有效的进程身份
+
+[last30days MCP runner #1574](https://github.com/mvanhorn/last30days-skill/pull/1574) 已合并，描述 Unix 子进程回收后的 PID／PGID 复用竞态：观察到退出后先保持未回收的 leader，完成进程组清理再回收；回退路径避免回收后继续按旧组号发送信号。本轮未独立实测，不将该 Unix 机制当作 Windows 实现已验证。
+
+对 [[AxisAgent]] 的增量设计建议：清理回执关联持久 Run ID、进程代次、平台身份引用和资源所有权。退出观测、清理完成与身份释放分别推进；旧数字标识失去有效性后，不用于处置可能复用了该编号的新进程。
+
+恢复或迟到取消时，先核对当前持有关系；无法确认目标归属则保留未完成清理状态及原因。按实际平台验证生命周期保证，不能仅凭进程名称或旧 PID 重建清理权限。
+
+这把既有 `processGeneration` 模型延伸到任务结束阶段，属于后续设计与验证范围，未操作用户进程或修改 Runtime 实现。
+
+参见：[[30 Intelligence/GitHub/Daily/2026-11-27|GitHub Trending — 2026-11-27]] · [[Deterministic Agent Runtime]] · [[Agent Verification and Audit Plane]]
+<!-- trend-watch:2026-11-27-process-cleanup-identity:end -->
