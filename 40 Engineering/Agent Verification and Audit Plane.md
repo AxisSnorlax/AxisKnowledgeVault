@@ -185,3 +185,18 @@ openai/codex-security 与 2026-10-08 的 Cloudflare security audit skill 形成�
 
 参见：[[30 Intelligence/GitHub/Daily/2026-11-22|GitHub Trending — 2026-11-22]] · [[Deterministic Agent Runtime]] · [[Professional Software Agent Surface]]
 <!-- trend-watch:2026-11-22-proxy-error-provenance:end -->
+
+<!-- trend-watch:2026-11-28-retrieval-window-coverage:begin -->
+## 2026-11-28：时间窗口筛选与分页覆盖
+
+[last30days v4.8.0](https://github.com/mvanhorn/last30days-skill/releases/tag/v4.8.0) 收录的[掘金源 #1642](https://github.com/mvanhorn/last30days-skill/pull/1642) 采用有界分页后本地筛选日期，并区分来源错误与空结果。它为已有 coverage 原则提供了时间窗口检索的具体样本；本轮未运行该采集器。
+
+以下是对 [[AxisAgent]] 的增量合同建议，不是上游已实现的字段或独立漏检测量：
+
+- 分开记录请求窗口、返回条目的时间范围和整个窗口的覆盖状态；每条结果合规不代表检索穷尽。
+- 记录来源／查询身份、分页或时间预算、实际取得页数、停止原因、部分失败和去重范围；预算耗尽或后续页失败时保留已获得证据，同时标明覆盖限制。
+- 只有可核验的跨页排序契约，才允许用“当前页全旧”证明后续页均在窗口外。不能仅凭 newest 选项或页内排序推断跨页单调性。
+- 来源未启用、首请求失败、成功但零匹配、取得部分结果分别表达；不把未执行或失败的检索归为“窗口内没有新证据”。
+
+参见：[[30 Intelligence/GitHub/Daily/2026-11-28|GitHub Trending — 2026-11-28]] · [[Agent Memory and Knowledge Lifecycle]] · [[Deterministic Agent Runtime]]
+<!-- trend-watch:2026-11-28-retrieval-window-coverage:end -->
